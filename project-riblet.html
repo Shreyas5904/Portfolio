@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riblet Surface Design for NACA 0015 Airfoil - Shreyas B Karadi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3d6f;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1e3d6f;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background: #f0f0f0;
+        }
+
+        /* Project Header */
+        .project-header {
+            background: linear-gradient(135deg, #1e3d6f 0%, #2c5aa0 50%, #4a90e2 100%);
+            color: white;
+            padding: 120px 0 60px 0;
+            margin-top: 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            color: #1e3d6f;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #1e3d6f;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            color: #2c5aa0;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding: 0.5rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #1e3d6f;
+            font-weight: bold;
+        }
+
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            margin-top: 0.8rem;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            background: #1e3d6f;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3d6f;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="shreyas_karadi_portfolio_v2.html" class="logo">Shreyas B Karadi</a>
+            <a href="shreyas_karadi_portfolio_v2.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </header>
+
+    <!-- Project Header -->
+    <div class="project-header">
+        <div class="container">
+            <h1>Riblet Surface Design for NACA 0015 Airfoil</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> Aug 2024 - Present</span>
+                <span><i class="fas fa-map-marker-alt"></i> Duke University</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Overview Section -->
+            <section class="section">
+                <h2>Overview</h2>
+                <p>
+                    Independent research investigating micro-structured riblet surfaces and their influence on boundary layer behavior for drag reduction applications. This project explores the design and optimization of both sawtooth and scalloped riblet geometries for aerodynamic efficiency on NACA 0015 airfoil profiles.
+                </p>
+                <p>
+                    The primary objective was to develop riblet surface designs that could reduce aerodynamic drag while maintaining lift characteristics under low Reynolds number conditions, with applications to unmanned aerial vehicles and high-altitude platforms.
+                </p>
+            </section>
+
+            <!-- Project Definition Section -->
+            <section class="section">
+                <h2>Project Definition</h2>
+                <p>
+                    During the initial phase of this research, we focused on defining the key parameters and objectives:
+                </p>
+                <ul>
+                    <li>Understanding boundary layer behavior over riblet surfaces</li>
+                    <li>Designing riblet geometries with optimal spacing and height ratios</li>
+                    <li>Fabricating test samples with high precision using 3D printing</li>
+                    <li>Conducting wind tunnel testing to validate aerodynamic performance</li>
+                    <li>Comparing sawtooth versus scalloped riblet designs</li>
+                </ul>
+                <div class="image-container">
+                    <img src="riblet.jpg" alt="Riblet Surface Design">
+                    <p class="image-caption">Riblet surface geometry showing sawtooth and scalloped designs</p>
+                </div>
+            </section>
+
+            <!-- Technical Implementation -->
+            <section class="section">
+                <h2>Technical Implementation</h2>
+                <p>
+                    The design and fabrication process involved multiple stages of development and testing:
+                </p>
+                
+                <h3>CAD Modeling & Design</h3>
+                <ul>
+                    <li>Parametric CAD modeling using SolidWorks for riblet geometries</li>
+                    <li>Developed sawtooth design with sharp triangular peaks</li>
+                    <li>Created scalloped design with smooth sinusoidal grooves</li>
+                    <li>Optimized spacing and height for low Reynolds number flow</li>
+                </ul>
+
+                <h3>Manufacturing & Fabrication</h3>
+                <ul>
+                    <li>High-resolution 3D printing for consistent surface quality</li>
+                    <li>Post-processing to achieve desired surface finish</li>
+                    <li>Quality control and dimensional verification</li>
+                    <li>Fabrication of multiple test samples for validation</li>
+                </ul>
+
+                <h3>Experimental Testing</h3>
+                <ul>
+                    <li>Wind tunnel testing with load cell instrumentation</li>
+                    <li>Measurement of lift and drag forces</li>
+                    <li>Boundary layer visualization and analysis</li>
+                    <li>Stall characteristics evaluation</li>
+                </ul>
+
+                <div class="image-container">
+                    <img src="StallStrip.jpg" alt="Wind Tunnel Testing">
+                    <p class="image-caption">Wind tunnel test setup for riblet surface evaluation</p>
+                </div>
+            </section>
+
+            <!-- CFD Analysis -->
+            <section class="section">
+                <h2>Computational Fluid Dynamics Analysis</h2>
+                <p>
+                    To complement experimental testing, computational methods were employed to understand flow behavior over riblet surfaces:
+                </p>
+                <ul>
+                    <li>ANSYS Fluent simulations for boundary layer analysis</li>
+                    <li>FUN3D mesh generation and flow solver setup</li>
+                    <li>Validation of experimental results through CFD predictions</li>
+                    <li>Flow visualization and vorticity analysis</li>
+                    <li>Parametric studies to optimize riblet geometry</li>
+                </ul>
+            </section>
+
+            <!-- Results & Achievements -->
+            <section class="section">
+                <h2>Results & Key Achievements</h2>
+                <ul>
+                    <li>Successfully developed two distinct riblet geometry designs with optimized performance</li>
+                    <li>Demonstrated measurable drag reduction compared to baseline smooth surface</li>
+                    <li>Validated experimental data against computational predictions</li>
+                    <li>Published findings on riblet effectiveness at low Reynolds numbers</li>
+                    <li>Strengthened expertise in aerodynamic flow control and surface topology design</li>
+                </ul>
+            </section>
+
+            <!-- Technologies & Tools -->
+            <section class="section">
+                <h2>Technologies & Tools</h2>
+                <div class="tech-list">
+                    <span class="tech-tag">CFD Analysis</span>
+                    <span class="tech-tag">3D Printing</span>
+                    <span class="tech-tag">Wind Tunnel Testing</span>
+                    <span class="tech-tag">SolidWorks</span>
+                    <span class="tech-tag">ANSYS Fluent</span>
+                    <span class="tech-tag">FUN3D</span>
+                    <span class="tech-tag">MATLAB</span>
+                    <span class="tech-tag">LabVIEW</span>
+                </div>
+            </section>
+
+            <!-- Learnings & Impact -->
+            <section class="section">
+                <h2>Learnings & Impact</h2>
+                <p>
+                    This project provided deep insights into the intersection of aerodynamic theory and experimental validation. Key learnings include:
+                </p>
+                <ul>
+                    <li>Importance of precise manufacturing tolerances for aerodynamic performance</li>
+                    <li>Correlation between CFD predictions and experimental measurements</li>
+                    <li>Application of flow control techniques to real-world engineering problems</li>
+                    <li>Project management and collaboration in a research environment</li>
+                    <li>Communication of technical findings to broader audiences</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Shreyas B Karadi. All rights reserved. | Mechanical Engineering Student | Duke University</p>
+        </div>
+    </footer>
+</body>
+</html>

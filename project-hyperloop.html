@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Induction Motor Assembly Design - Shreyas B Karadi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3d6f;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1e3d6f;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background: #f0f0f0;
+        }
+
+        /* Project Header */
+        .project-header {
+            background: linear-gradient(135deg, #1e3d6f 0%, #2c5aa0 50%, #4a90e2 100%);
+            color: white;
+            padding: 120px 0 60px 0;
+            margin-top: 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            color: #1e3d6f;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #1e3d6f;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            color: #2c5aa0;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding: 0.5rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #1e3d6f;
+            font-weight: bold;
+        }
+
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            margin-top: 0.8rem;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            background: #1e3d6f;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3d6f;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="shreyas_karadi_portfolio_v2.html" class="logo">Shreyas B Karadi</a>
+            <a href="shreyas_karadi_portfolio_v2.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </header>
+
+    <!-- Project Header -->
+    <div class="project-header">
+        <div class="container">
+            <h1>Linear Induction Motor Assembly Design</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> 2023 - 2024</span>
+                <span><i class="fas fa-map-marker-alt"></i> Duke Hyperloop Team</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Overview Section -->
+            <section class="section">
+                <h2>Overview</h2>
+                <p>
+                    Custom Linear Induction Motor (LIM) assembly design for Duke University's Hyperloop competition team. This project involved designing a robust and modular motor system capable of withstanding significant electromagnetic forces while maintaining precise alignment with the track structure.
+                </p>
+                <p>
+                    The primary objective was to create a propulsion system that could accelerate a Hyperloop pod to competition speeds while maintaining structural integrity, thermal management, and ease of assembly/disassembly for rapid prototyping and testing cycles.
+                </p>
+            </section>
+
+            <!-- Project Definition Section -->
+            <section class="section">
+                <h2>Project Definition & Requirements</h2>
+                <p>
+                    The motor assembly required meeting several critical engineering specifications:
+                </p>
+                <ul>
+                    <li>Withstand electromagnetic forces without deformation or failure</li>
+                    <li>Maintain precise alignment with track structure (±2mm tolerance)</li>
+                    <li>Integrate seamlessly with electrical and control systems</li>
+                    <li>Allow for quick assembly and disassembly during testing</li>
+                    <li>Provide thermal management for sustained operation</li>
+                    <li>Minimize weight while maintaining structural rigidity</li>
+                </ul>
+                <div class="image-container">
+                    <img src="hyperloop.jpg" alt="Linear Induction Motor Assembly">
+                    <p class="image-caption">Linear Induction Motor assembly showing motor coil housing and mechanical mounting</p>
+                </div>
+            </section>
+
+            <!-- Design Process -->
+            <section class="section">
+                <h2>Design Process</h2>
+                
+                <h3>CAD Modeling & Design</h3>
+                <ul>
+                    <li>Comprehensive CAD modeling using SolidWorks</li>
+                    <li>Motor coil housing design optimized for electromagnetic performance</li>
+                    <li>Mechanical mounting structure for track integration</li>
+                    <li>Thermal pathway design for heat dissipation</li>
+                    <li>Modular assembly design for manufacturing flexibility</li>
+                </ul>
+
+                <h3>Tolerance Analysis & GD&T</h3>
+                <ul>
+                    <li>Applied Geometric Dimensioning and Tolerancing (GD&T) principles</li>
+                    <li>Defined critical tolerances for motor alignment and positioning</li>
+                    <li>Stack-up analysis to ensure assembly compatibility</li>
+                    <li>Manufacturing compliance verification</li>
+                </ul>
+
+                <h3>Structural Analysis</h3>
+                <ul>
+                    <li>Finite Element Analysis (FEA) for stress and deformation prediction</li>
+                    <li>Electromagnetic force analysis and load cases</li>
+                    <li>Material selection for optimal strength-to-weight ratio</li>
+                    <li>Vibration analysis to minimize resonance issues</li>
+                </ul>
+            </section>
+
+            <!-- Manufacturing & Fabrication -->
+            <section class="section">
+                <h2>Manufacturing & Fabrication</h2>
+                <p>
+                    The motor assembly was fabricated using precision machining and additive manufacturing techniques:
+                </p>
+                <ul>
+                    <li>CNC machining for high-precision metal components</li>
+                    <li>Fastener placement and specification optimization</li>
+                    <li>Assembly jig design for production efficiency</li>
+                    <li>Quality control inspection protocols</li>
+                    <li>Integration testing with electrical subsystems</li>
+                </ul>
+            </section>
+
+            <!-- Integration & Testing -->
+            <section class="section">
+                <h2>System Integration & Testing</h2>
+                <p>
+                    The motor assembly was integrated with the broader Hyperloop pod systems:
+                </p>
+                <ul>
+                    <li>Electrical sub-team coordination for power delivery and control</li>
+                    <li>Track integration and alignment verification</li>
+                    <li>Thermal testing to validate heat dissipation</li>
+                    <li>Performance testing under operational loads</li>
+                    <li>Modular design validation for rapid reconfiguration</li>
+                </ul>
+            </section>
+
+            <!-- Results & Achievements -->
+            <section class="section">
+                <h2>Results & Key Achievements</h2>
+                <ul>
+                    <li>Designed robust motor assembly capable of withstanding electromagnetic forces</li>
+                    <li>Achieved ±2mm alignment tolerance with track structure</li>
+                    <li>Successfully integrated with propulsion and electrical systems</li>
+                    <li>Enabled rapid assembly/disassembly for iterative testing</li>
+                    <li>Contributed to competition performance and system reliability</li>
+                </ul>
+            </section>
+
+            <!-- Technologies & Tools -->
+            <section class="section">
+                <h2>Technologies & Tools</h2>
+                <div class="tech-list">
+                    <span class="tech-tag">SolidWorks</span>
+                    <span class="tech-tag">GD&T</span>
+                    <span class="tech-tag">FEA</span>
+                    <span class="tech-tag">Thermal Analysis</span>
+                    <span class="tech-tag">CNC Machining</span>
+                    <span class="tech-tag">Mechanical Design</span>
+                    <span class="tech-tag">Assembly Design</span>
+                    <span class="tech-tag">Manufacturing</span>
+                </div>
+            </section>
+
+            <!-- Learnings & Impact -->
+            <section class="section">
+                <h2>Learnings & Impact</h2>
+                <p>
+                    This project provided comprehensive experience in mechanical systems engineering:
+                </p>
+                <ul>
+                    <li>Full-system mechanical integration and compatibility</li>
+                    <li>Importance of precise tolerancing and manufacturing compliance</li>
+                    <li>Cross-functional team collaboration and communication</li>
+                    <li>Iterative design process in competition environments</li>
+                    <li>Real-world application of theoretical engineering principles</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Shreyas B Karadi. All rights reserved. | Mechanical Engineering Student | Duke University</p>
+        </div>
+    </footer>
+</body>
+</html>
