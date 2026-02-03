@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyas B Karadi - Mechanical Engineering | Duke University</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3d6f;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #1e3d6f;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #1e3d6f;
+            margin: 3px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 61, 111, 0.5), rgba(44, 90, 160, 0.5)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            background: white;
+            color: #1e3d6f;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #1e3d6f;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #1e3d6f;
+            margin: 1rem auto;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-image {
+            text-align: center;
+            position: sticky;
+            top: 120px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #1e3d6f;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlights {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlights h4 {
+            color: #1e3d6f;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .highlights ul {
+            list-style: none;
+        }
+
+        .highlights li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .highlights li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #1e3d6f;
+            font-weight: bold;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #1e3d6f;
+            transform: translateX(-50%);
+        }
+
+        .experience-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .experience-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .experience-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: calc(50% - 2rem);
+            position: relative;
+        }
+
+        .experience-item:nth-child(odd) .experience-content {
+            margin-right: 4rem;
+        }
+
+        .experience-item:nth-child(even) .experience-content {
+            margin-left: 4rem;
+        }
+
+        .experience-date {
+            position: absolute;
+            left: 50%;
+            /* moved slightly up from 50% to 45% */
+            top: 45%;
+            transform: translate(-50%, -50%);
+            /* semi-transparent 'see-through' / glass effect */
+            background: rgba(30, 61, 111, 0.65);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        /* Alternate date positioning: odd items shift right, even items shift left */
+        .experience-item:nth-child(odd) .experience-date {
+            left: 65%;
+        }
+
+        .experience-item:nth-child(even) .experience-date {
+            left: 35%;
+        }
+
+        .experience-title {
+            color: #1e3d6f;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-description li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .experience-description li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #1e3d6f;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+            align-self: start;
+        }
+
+        .project-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1e3d6f;
+            font-weight: 600;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #e9ecef;
+            color: #1e3d6f;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-btn {
+            background: #1e3d6f;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .project-btn:hover {
+            background: #2c5aa0;
+        }
+
+        .project-details {
+            max-height: 0;
+            overflow: hidden;
+            background: #f8f9fa;
+            padding: 0 2rem;
+            display: none;
+        }
+
+        .project-details.active {
+            max-height: 600px;
+            padding: 2rem;
+        }
+
+        .project-details h5 {
+            color: #1e3d6f;
+            margin-bottom: 1rem;
+        }
+
+        .project-details ul {
+            list-style: none;
+        }
+
+        .project-details li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .project-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #1e3d6f;
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f8f9fa;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skills-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .skills-category h3 {
+            color: #1e3d6f;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .skills-category i {
+            font-size: 3rem;
+            color: #1e3d6f;
+            margin-bottom: 1rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            background: #1e3d6f;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .skill-item:hover {
+            background: #2c5aa0;
+        }
+
+        /* Resume Section */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .resume-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .resume-section h3 {
+            color: #1e3d6f;
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            border-bottom: 3px solid #1e3d6f;
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .resume-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .resume-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .resume-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .resume-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .resume-location {
+            color: #1e3d6f;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .download-resume {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 18px 36px;
+            background: linear-gradient(135deg, #1e3d6f, #2c5aa0);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e3d6f;
+            box-shadow: 0 0 0 3px rgba(30, 61, 111, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1e3d6f, #2c5aa0);
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            color: #1e3d6f;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .contact-details {
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: #1e3d6f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #1e3d6f;
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        .social-link:hover {
+            background: #2c5aa0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3d6f;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .tagline {
+                font-size: 1.3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .about-image {
+                position: static;
+            }
+
+            .about-image img {
+                width: 280px;
+                height: 280px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .experience-timeline::before {
+                left: 2rem;
+            }
+
+            .experience-item {
+                flex-direction: column;
+            }
+
+            .experience-content {
+                width: 100%;
+                margin: 0 0 2rem 4rem !important;
+            }
+
+            .experience-date {
+                left: 2rem;
+                transform: translateX(-50%);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .cta-button {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .experience-content {
+                margin: 0 0 2rem 3rem !important;
+            }
+
+            .experience-date {
+                left: 1.5rem;
+            }
+
+            .experience-timeline::before {
+                left: 1.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header, .footer, .cta-button, .project-btn, .submit-btn {
+                display: none;
+            }
+
+            .hero {
+                height: auto;
+                padding: 2rem 0;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            body {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">Shreyas B Karadi</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Shreyas B Karadi</h1>
+            <p class="subtitle">Mechanical Engineering Student | Duke University</p>
+            <p class="tagline">Aerospace Enthusiast | Researcher | Pilot</p>
+            <a href="#about" class="cta-button">Explore My Work</a>
+            <a href="SK_Resume2025.pdf" class="cta-button" download>Download Resume</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="SKSOLO2.jpg" alt="Shreyas B Karadi - Professional Photo">
+                </div>
+                <div class="about-text">
+                    <h3>Passionate Mechanical Engineer & Researcher</h3>
+                    <p>
+                        Hello! 👋 I’m Shreyas Karadi, a passionate Mechanical Engineering student at Duke University with a deep-rooted love for aviation, hands-on design, and real-world problem solving. My journey has been fueled by a curiosity for how things fly—and a drive to build, test, and refine the systems that make it possible.
+
+                    </p> Through immersive research and competitive design experiences, I’ve had the opportunity to work at the intersection of theory and application. As a Flight Test Engineer on an aircraft performance project, I led wind tunnel testing to evaluate stall control systems—combining aerodynamic theory with hands-on experimentation. Whether it’s modeling aerodynamic surfaces in CAD, fabricating prototypes, or running data-driven simulations, I bring a builder’s mindset to every challenge.
+
+                    </p> My background spans CFD, FEA, CNC machining, and full-system testing, alongside a strong foundation in physics, thermodynamics, and control systems. Outside the lab, I’m a licensed private pilot, bringing real-world perspective to the technical work I do and a deep appreciation for the machines we build.
+
+                    </p> I’m always looking to learn from engineers who push boundaries and from projects that demand precision, creativity, and resilience. As you explore my portfolio, you’ll find a blend of engineering rigor, collaborative spirit, and the energy I bring to every flight-tested idea. Let’s connect and shape the future of aerospace together.
+                
+                    <p>
+                    
+                    </p>
+                    <p>
+                        My unique combination of practical engineering experience through internships along with active research roles in Duke's laboratories, has equipped me with both industry-relevant skills and advanced research capabilities. I bring expertise in CAD design, CFD analysis, manufacturing processes, and project leadership to every challenge.
+                    </p>
+
+                    <div class="highlights">
+                        <h4>Key Achievements & Qualifications</h4>
+                        <ul>
+                    
+                            <li>Bucher and Bee-Keng Boey scholarship recipient</li>
+                            <li>Private Pilot's License holder with deep aviation knowledge</li>
+                            <li>Active researcher in 3 different Duke engineering laboratories</li>
+                            <li>Proficient in CAD (SolidWorks), CFD (ANSYS Fluent, FUN3D), and manufacturing techniques</li>          
+                            <li>Multilingual capabilities (6 languages) with international experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Professional & Research Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <h3 class="experience-title">Mechanical Engineering Intern</h3>
+                        <p class="experience-company">Trio Labs | Durham, North Carolina</p>
+                        <div class="experience-description">
+                            <ul>
+                               At Trio Labs, I worked within a high-paced R&D team to improve additive manufacturing processes and validate new hardware systems.
+                                I implemented a redesigned chemical transfer process that increased operational efficiency by 90%, and developed printer validation test procedures that reduced commissioning times by 50%. 
+                                My work involved system-level troubleshooting, root cause analysis, and collaboration across design, manufacturing, and quality control. 
+                               This internship sharpened my skills in experimental design, systems optimization, and lean engineering practices.
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-date">May 2025 - Aug 2025</div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <h3 class="experience-title">Flight Test Engineer, Electric Glider Performance Project</h3>
+                        <p class="experience-company">Duke University</p>
+                        <div class="experience-description">
+                            <ul>
+                                As Lead Flight Test Engineer, I spearheaded the aerodynamic evaluation of stall strips on a NACA 0015 airfoil to assess stall onset, lift characteristics, and flow behavior under low Reynolds number conditions. 
+                                I designed and fabricated custom test hardware, conducted controlled wind tunnel experiments, and applied data acquisition techniques using LabVIEW and MATLAB. 
+                                My responsibilities included coordinating with team members, ensuring the repeatability of tests, and aligning experimental results with aerodynamic performance goals—bridging the gap between theoretical aerodynamics and hands-on flight system validation.
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-date">Aug 2024 - Present</div>
+                     </div>
+                     <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <h3 class="experience-title">Aeroelasticity Lab Research Assistant</h3>
+                        <p class="experience-company">Duke University| Aeroelasticity Group</p>
+                        <div class="experience-description">
+                            <ul>
+                               In this role, I conducted experimental and computational research on passive drag-reduction technologies,
+                                 focusing on the performance of flexible riblets in turbulent flow. I fabricated riblet geometries using 3D printing and laser cutting, 
+                                 performed wind tunnel testing with load cell instrumentation, and implemented automated data logging protocols. 
+                                 Additionally, I used CFD tools including ANSYS Fluent and FUN3D to simulate flow conditions and validate them against experimental results. 
+                                 This role strengthened my foundation in fluid mechanics, turbulence modeling, and data-driven engineering validation.
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-date">Aug 2024 - Present</div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <h3 class="experience-title">Chassis Design and Assembly Engineer </h3>
+                        <p class="experience-company">Duke University</p>
+                        <div class="experience-description">
+                            <ul>
+                                As a member of the chassis team, I was responsible for the design, documentation, and fabrication of high-precision jigs and chassis components for a competitive formula-style electric racecar.
+                                 I developed CAD models and detailed engineering drawings using SolidWorks, applied GD&T for manufacturing compliance, and conducted tolerance analysis for structural integrity.
+                                  I also used CNC machining techniques to ensure accuracy during pedal box and chassis tube fabrication.
+                                 This role provided deep exposure to full-system mechanical integration, regulatory compliance, and rapid prototyping in a team-based engineering environment.
+                           </ul>
+                        </div>
+                    </div>
+                    <div class="experience-date">Aug 2023 - Present</div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <h3 class="experience-title">Materials Science Lab Research Assistant</h3>
+                        <p class="experience-company">Volker Blum Lab | Duke University</p>
+                        <div class="experience-description">
+                            <ul>
+                                In the Volker Blum Lab, I contributed to the identification and evaluation of chalcogenide and oxide perovskite materials for photovoltaic applications. 
+                                I focused on analyzing band gap characteristics and industrial scalability of material candidates for potential use in next-generation solar cells. 
+                                I managed and maintained the Muchas materials database using MySQL and DataGrip, and coordinated updates through GitHub. 
+                                his experience deepened my understanding of material science principles, data management systems, and their applications in renewable energy technologies.
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="experience-date">Jan 2023 - Jul 2023</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('riblet.jpg');"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Riblet Surface Design for NACA 0015 Airfoil</h3>
+                        <p class="project-description">
+                            Independent research investigating micro-structured riblet surfaces and their influence on boundary layer behavior for drag reduction applications. Developed both sawtooth and scalloped riblet geometries for aerodynamic optimization.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">CFD Analysis</span>
+                            <span class="tech-tag">3D Printing</span>
+                            <span class="tech-tag">Wind Tunnel Testing</span>
+                            <span class="tech-tag">SolidWorks</span>
+                            <span class="tech-tag">ANSYS Fluent</span>
+                        </div>
+                        <a href="project-riblet.html" class="project-btn">View Details</a>
+                    </div>
+                    <div class="project-details" id="project-0">
+                        <h5>Technical Achievements:</h5>
+                        <ul>
+                            <li>Developed two distinct riblet geometries: sawtooth (sharp triangular peaks) and scalloped (smooth sinusoidal grooves) designs</li>
+                            <li>Parametrically modeled riblets in CAD with high-resolution 3D printing for consistent surface quality</li>
+                            <li>Conducted comprehensive boundary layer analysis to study transition and separation behavior</li>
+                            <li>Validated experimental results through advanced computational methods using ANSYS Fluent and FUN3D</li>
+                            <li>Strengthened expertise in aerodynamic flow control, surface topology design, and additive manufacturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('hyperloop.jpg');"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Linear Induction Motor Assembly Design</h3>
+                        <p class="project-description">
+                            Custom Linear Induction Motor assembly design for college Hyperloop team, including motor coil housing and mechanical mounting structure. Created robust and modular system capable of withstanding electromagnetic forces.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SolidWorks</span>
+                            <span class="tech-tag">GD&T</span>
+                            <span class="tech-tag">Thermal Analysis</span>
+                            <span class="tech-tag">FEA</span>
+                            <span class="tech-tag">Mechanical Design</span>
+                        </div>
+                        <a href="project-hyperloop.html" class="project-btn">View Details</a>
+                    </div>
+                    <div class="project-details" id="project-1">
+                        <h5>Engineering Excellence:</h5>
+                        <ul>
+                            <li>Designed robust system capable of withstanding electromagnetic forces while maintaining precise alignment with track</li>
+                            <li>Implemented proper tolerancing, fastener placement, and ease of manufacturing considerations</li>
+                            <li>Integrated thermal management and vibration damping solutions for optimal performance</li>
+                            <li>Created modular design for quick assembly/disassembly during testing phases</li>
+                            <li>Led mechanical-electrical integration collaboration with propulsion and electrical sub-teams</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('StallStrip.jpg');"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Flexible Stall Strip Design for NACA 0015 Airfoil</h3>
+                        <p class="project-description">
+                            High-precision manufacturing of riblet surfaces using advanced additive manufacturing techniques. Achieved consistent surface quality and dimensional accuracy for aerodynamic testing applications.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">3D Printing</span>
+                            <span class="tech-tag">Surface Finishing</span>
+                            <span class="tech-tag">Quality Control</span>
+                            <span class="tech-tag">Manufacturing</span>
+                            <span class="tech-tag">Metrology</span>
+                        </div>
+                        <a href="project-manufacturing.html" class="project-btn">View Details</a>
+                    </div>
+                    <div class="project-details" id="project-2">
+                        <h5>Manufacturing Excellence:</h5>
+                        <ul>
+                            <li>Achieved high-resolution 3D printing with consistent surface quality across test samples</li>
+                            <li>Developed manufacturing protocols for both rigid and flexible Stall Strip materials</li>
+                            <li>Implemented quality control measures for dimensional accuracy and surface finish</li>
+                            <li>Optimized printing parameters for fine-scale surface features and geometric precision</li>
+                            <li>Created reproducible manufacturing process for research validation and testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('perovskite.jpg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Next-Generation Solar Cell Materials Research</h3>
+                        <p class="project-description">
+                            Advanced materials science research focusing on chalcogenides and oxide perovskites as potential silicon alternatives in photovoltaic applications. Contributed to globally accessible research database.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Materials Science</span>
+                            <span class="tech-tag">Database Management</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Research</span>
+                        </div>
+                        <a href="project-solar.html" class="project-btn">View Details</a>
+                    </div>
+                    <div class="project-details" id="project-3">
+                        <h5>Research Impact:</h5>
+                        <ul>
+                            <li>Identified potential materials with optimal band gaps for solar applications and industrial scalability</li>
+                            <li>Enhanced globally accessible Muchas database for worldwide research community collaboration</li>
+                            <li>Evaluated manufacturing feasibility and cost-effectiveness of alternative materials</li>
+                            <li>Applied computational materials science principles for predictive analysis</li>
+                            <li>Contributed to sustainable energy technology development and renewable energy advancement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills & Competencies</h2>
+            <div class="skills-container">
+                <div class="skills-category">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Software & Programming</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">MATLAB</div>
+                        <div class="skill-item">SolidWorks</div>
+                        <div class="skill-item">Fusion360</div>
+                        <div class="skill-item">ANSYS</div>
+                        <div class="skill-item">AutoCAD</div>
+                        <div class="skill-item">MS Office</div>
+                        <div class="skill-item">Arduino</div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <i class="fas fa-tools"></i>
+                    <h3>Engineering & Analysis</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">CFD Analysis</div>
+                        <div class="skill-item">FEA</div>
+                        <div class="skill-item">GD&T</div>
+                        <div class="skill-item">Tolerance Analysis</div>
+                        <div class="skill-item">Engineering Drawings</div>
+                        <div class="skill-item">Private Pilot License</div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <i class="fas fa-industry"></i>
+                    <h3>Manufacturing & Production</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">Lean Manufacturing</div>
+                        <div class="skill-item">Kaizen</div>
+                        <div class="skill-item">CNC Machining</div>
+                        <div class="skill-item">Injection Molding</div>
+                        <div class="skill-item">3D Printing</div>
+                        <div class="skill-item">Prototyping</div>
+                        <div class="skill-item">Water Jetting</div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <i class="fas fa-globe"></i>
+                    <h3>Languages & Communication</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">English (Native)</div>
+                        <div class="skill-item">Kannada (Native)</div>
+                        <div class="skill-item">Hindi (Fluent)</div>
+                        <div class="skill-item">French (Fluent)</div>
+                        <div class="skill-item">Spanish (Intermediate)</div>
+                        <div class="skill-item">Japanese (Intermediate)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <h2 class="section-title">Education & Achievements</h2>
+            <div class="resume-grid">
+                <div class="resume-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div class="resume-item">
+                        <h4>Bachelor of Science in Mechanical Engineering</h4>
+                        <p class="resume-date">Aug 2022 - May 2026</p>
+                        <p class="resume-location">Duke University, Pratt School of Engineering | Durham, NC</p>
+                        <p><strong>Scholarships:</strong> Dorcas Maynor and E. Ray Bucher, Jr. Scholar, Bee-Keng Boey Scholar</p>
+                        <p><strong>Relevant Coursework:</strong> Aircraft Performance,Compressible Fluid Flow, Heat Transfer</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3><i class="fas fa-trophy"></i> Leadership & Activities</h3>
+                    <div class="resume-item">
+                        <h4>Treasurer</h4>
+                        <p class="resume-date">2023 - Present</p>
+                        <p class="resume-location">Duke Cycling Club</p>
+                        <p>Effectively manage club's budget of $20,000; organize fundraising events and financial planning initiatives</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Active Member & Instructor</h4>
+                        <p class="resume-date">2022 - Present</p>
+                        <p class="resume-location">Duke Aviator's Club</p>
+                        <p>Built aircraft simulator for student training; teach weekly ground school lessons to aspiring pilots</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3><i class="fas fa-medal"></i> Athletic Achievements</h3>
+                    <div class="resume-item">
+                        <h4>National Champion Speed Skater</h4>
+                        <p class="resume-date">2018 - 2022</p>
+                        <p class="resume-location">All India Roller & Ice Speed Skating</p>
+                        <p><strong>All India #3</strong> in competitive speed skating, demonstrating exceptional discipline, training, and competitive performance at national level</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h3><i class="fas fa-heart"></i> Personal Interests</h3>
+                    <div class="resume-item">
+                        <p>Aviation & Flying, Road Cycling, Cricket, Pickleball, Photography, Travel, Technology Innovation</p>
+                        <p>Diverse interests reflect well-rounded personality with strong emphasis on technology, athletics, and creative pursuits</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-resume">
+                <a href="Shreyas Karadi Resume 2025-1.pdf" class="download-btn" download>
+                    <i class="fas fa-download"></i> Download Complete Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required placeholder="I'd love to hear about opportunities, collaborations, or any questions you might have..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>I'm always interested in discussing engineering opportunities, research collaborations, and innovative projects. Whether you're a potential employer, fellow engineer, or researcher, I'd love to connect and explore how we can work together.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>ShreyasKaradi@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (919) 358-5550</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Durham, NC, USA</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="mailto:ShreyasKaradi@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/shreyas-karadi" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/shreyaskaradi" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Shreyas B Karadi. All rights reserved. | Mechanical Engineering Student | Duke University</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Project details toggle
+        function toggleProject(index) {
+            const projectDetails = document.getElementById(`project-${index}`);
+            projectDetails.classList.toggle('active');
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Simulate form submission
+            alert(`Thank you ${name}! Your message about "${subject}" has been received. I'll respond to ${email} promptly.`);
+
+            // Reset form
+            this.reset();
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
