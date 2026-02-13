@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flexible Stall Strip- Shreyas B Karadi</title>
+    <title>Flexible Stall Strip Testing - Shreyas B Karadi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -235,7 +235,7 @@
     <!-- Project Header -->
     <div class="project-header">
         <div class="container">
-            <h1>Advanced Riblet Surface Manufacturing</h1>
+            <h1>Flexible Stall Strip Testing & Development</h1>
             <div class="project-meta">
                 <span><i class="fas fa-calendar"></i> Aug 2024 - Present</span>
                 <span><i class="fas fa-map-marker-alt"></i> Duke Aeroelasticity Lab</span>
@@ -250,111 +250,175 @@
             <section class="section">
                 <h2>Overview</h2>
                 <p>
-                    High-precision manufacturing of riblet surfaces using advanced additive manufacturing techniques. This project focuses on achieving consistent surface quality and dimensional accuracy for aerodynamic testing applications, with emphasis on reproducibility and quality control in production processes.
+                    Investigation of flexible stall strips as passive flow control devices for General Aviation (GA) aircraft. This research explores how stall strip geometry, placement, and material properties affect stall onset, drag characteristics, and overall handling qualities of a NACA 0012 airfoil. The core research question examines how stall strips can enable smoother stall behavior and lower separation speeds while minimizing aerodynamic penalties.
                 </p>
                 <p>
-                    The goal is to develop manufacturing protocols that can reliably produce riblet-structured surfaces suitable for wind tunnel testing and real-world aerodynamic applications, while maintaining tight tolerances and surface finish requirements.
+                    The project combines systematic wind tunnel testing, computational design, and manufacturing to develop and validate flexible stall strip designs. These strips serve as boundary-layer-tripping elements that improve flow stability and delay stall conditions across various flight regimes—directly addressing practical GA aircraft performance and safety requirements.
                 </p>
             </section>
 
-            <!-- Project Definition Section -->
+            <!-- Research Objectives Section -->
             <section class="section">
-                <h2>Manufacturing Objectives</h2>
+                <h2>Research Objectives & Core Questions</h2>
                 <p>
-                    The manufacturing project aimed to address key challenges in riblet surface production:
+                    This research addresses critical aerodynamic design challenges for improving aircraft handling:
                 </p>
                 <ul>
-                    <li>Achieve high-resolution 3D printing with consistent surface quality</li>
-                    <li>Develop protocols for both rigid and flexible riblet materials</li>
-                    <li>Implement robust quality control measures</li>
-                    <li>Optimize printing parameters for fine-scale surface features</li>
-                    <li>Create reproducible manufacturing processes for validation testing</li>
+                    <li>How do stall strip geometry, size, and spanwise placement affect stall onset and onset smoothness?</li>
+                    <li>What is the drag penalty imposed by stall strips pre-stall, and how does it vary with strip configuration?</li>
+                    <li>Can flexible (TPU) strips provide superior stall control compared to rigid alternatives?</li>
+                    <li>How does root-biased strip placement optimize both stall behavior and aerodynamic efficiency?</li>
+                    <li>What is the relationship between Reynolds number and stall strip effectiveness at low speeds?</li>
+                    <li>How can experimental findings translate to real-world GA aircraft design improvements?</li>
                 </ul>
-                <div class="image-container">
-                    <img src="StallStrip.jpg" alt="Riblet Manufacturing Process">
-                    <p class="image-caption">Advanced riblet surface manufacturing and quality control</p>
-                </div>
             </section>
-                <div class="image-container">
-                    <img src="Assem1.png" alt="Wind Tunnel Test Setup 1">
-                    <p class="image-caption">High-resolution 3D printing system with multi-material capability</p>
-                </div>    
-                <div class="image-container">
-                    <img src="Assem2.jpg" alt="Wind Tunnel Test Setup 2">
-                    <p class="image-caption">High-resolution 3D printing system with multi-material capability</p>
-                </div>  
-            <!-- Manufacturing Process -->
+
+            <!-- Experimental Approach Section -->
             <section class="section">
-                <h2>Manufacturing Process</h2>
+                <h2>Experimental Approach</h2>
                 
-                <h3>Design to Manufacturing</h3>
+                <h3>Test Airfoil & Configuration</h3>
                 <ul>
-                    <li>CAD model preparation and optimization for 3D printing</li>
-                    <li>Slicing and support structure generation</li>
-                    <li>Print parameter optimization (layer height, exposure time, etc.)</li>
-                    <li>Material selection based on application requirements</li>
+                    <li>NACA 0012 symmetric airfoil (clean baseline, predictable stall characteristics)</li>
+                    <li>Removable stall strip interface for quick configuration changes</li>
+                    <li>Adjustable angle of attack mechanism (steel rod with bolt-and-nut mounting)</li>
+                    <li>Precision force measurement capability (≥100 Hz sampling rate)</li>
                 </ul>
 
-                <h3>Additive Manufacturing</h3>
+                <h3>Stall Strip Configurations</h3>
                 <ul>
-                    <li>High-resolution 3D printing technology deployment</li>
-                    <li>Multi-material printing capability for different applications</li>
-                    <li>In-situ quality monitoring during production</li>
-                    <li>Real-time parameter adjustment for optimization</li>
+                    <li><strong>Geometry:</strong> Triangular strips (baseline, aircraft-relevant design)</li>
+                    <li><strong>Heights:</strong> 1 mm, 2 mm, 3 mm (scaled to chord)</li>
+                    <li><strong>Spanwise Lengths:</strong> Short (root-local), medium, and extended options</li>
+                    <li><strong>Materials:</strong> Rigid (PLA/ABS) vs. flexible (TPU) for comparative analysis</li>
+                    <li><strong>Placement:</strong> Root-biased positioning near leading edge</li>
                 </ul>
-                 <div class="image-container">
-                    <img src="Assem1.png" alt="Wind Tunnel Test Setup 1">
-                    <p class="image-caption">High-resolution 3D printing system with multi-material capability</p>
+
+                <h3>Testing Methods</h3>
+                <ul>
+                    <li><strong>Method 1 (Primary):</strong> Fixed Reynolds number with angle of attack sweep</li>
+                    <li>Captures stall AoA, hysteresis behavior, and drag characteristics</li>
+                    <li><strong>Method 2 (Secondary):</strong> Fixed angle of attack with Reynolds number variation</li>
+                    <li>Identifies separation onset by velocity and scale sensitivity</li>
+                </ul>
+
+                <div class="image-container">
+                    <img src="StallStrip.jpg" alt="Flexible Stall Strip Design">
+                    <p class="image-caption">Flexible stall strip geometry and boundary layer flow control mechanism</p>
                 </div>
-                <h3>Post-Processing & Finishing</h3>
+
+                <h3>Instrumentation & Measurement</h3>
                 <ul>
-                    <li>Support structure removal and cleaning procedures</li>
-                    <li>Surface finishing and polishing techniques</li>
-                    <li>Dimensional verification and inspection</li>
-                    <li>Final quality assurance protocols</li>
+                    <li>Three-axis force balance (lift, drag, moment measurement)</li>
+                    <li>Tuft visualization to observe separation onset and oscillation patterns</li>
+                    <li>Mean and RMS force data acquisition at ≥100 Hz</li>
+                    <li>Hysteresis mapping during ramp-up and ramp-down cycles</li>
+                    <li>Documented separation patterns via photography and video</li>
                 </ul>
             </section>
 
-            <!-- Quality Control -->
+            <!-- Design & Manufacturing -->
             <section class="section">
-                <h2>Quality Control & Metrology</h2>
+                <h2>Design & Manufacturing Approach</h2>
+                
+                <h3>CAD Design & Optimization</h3>
+                <ul>
+                    <li>Parametric NACA 0012 model with removable strip interface</li>
+                    <li>Multiple strip heights and spanwise length variations</li>
+                    <li>Design optimization for structural integrity and aerodynamic consistency</li>
+                    <li>Integration of mounting points for angle of attack adjustment</li>
+                </ul>
+
+                <h3>Fabrication & Material Selection</h3>
+                <ul>
+                    <li>High-precision manufacturing using additive techniques for prototyping</li>
+                    <li>Rigid strip fabrication (PLA/ABS) for baseline comparison</li>
+                    <li>Flexible strip integration using TPU material for novel control capabilities</li>
+                    <li>Surface finish optimization for aerodynamic consistency and repeatability</li>
+                </ul>
+
+                <div class="image-container">
+                    <img src="Assem1.png" alt="Stall Strip Assembly">
+                    <p class="image-caption">Flexible stall strip assembly and mounting configuration for wind tunnel installation</p>
+                </div>
+
+                <h3>Assembly & Calibration</h3>
+                <ul>
+                    <li>Modular assembly design enabling quick strip configuration changes</li>
+                    <li>Precision angle of attack adjustment mechanism with reference calibration</li>
+                    <li>Force balance zeroing and tare procedures</li>
+                    <li>Dry-run verification of data acquisition systems</li>
+                </ul>
+            </section>
+
+            <!-- Wind Tunnel Testing Protocol -->
+            <section class="section">
+                <h2>Wind Tunnel Testing Protocol</h2>
                 <p>
-                    Comprehensive quality control measures ensure consistency and reliability:
+                    Comprehensive testing follows a systematic, phased approach to ensure data quality and consistency:
+                </p>
+                
+                <h3>Phase 1: Baseline Testing (Clean Airfoil)</h3>
+                <ul>
+                    <li>Establish reference C_L(α) and C_D(α) curves for clean NACA 0012</li>
+                    <li>Identify natural stall AoA and hysteresis characteristics</li>
+                    <li>Quantify RMS lift oscillations near stall and natural noise floor</li>
+                    <li>Repeated runs to ensure reproducibility and confidence</li>
+                </ul>
+
+                <h3>Phase 2: Systematic Configuration Testing</h3>
+                <ul>
+                    <li>One variable tested at a time (size, span extent, material)</li>
+                    <li>Identical angle of attack protocol for all configurations</li>
+                    <li>Record mean and RMS forces across full angle of attack range</li>
+                    <li>Tuft visualization documenting separation patterns and dynamics</li>
+                    <li>Repeat critical test cases near stall for enhanced confidence</li>
+                </ul>
+
+                <h3>Phase 3: Data Extraction & Analysis</h3>
+                <ul>
+                    <li>Calculate C_L(α) and C_D(α) for each configuration</li>
+                    <li>Quantify stall onset metrics (AoA, smoothness, hysteresis)</li>
+                    <li>Evaluate drag penalty pre-stall compared to baseline</li>
+                    <li>Compare size effects, spanwise extent effects, and rigid vs. flexible performance</li>
+                </ul>
+
+                <div class="image-container">
+                    <img src="Assem2.jpg" alt="Wind Tunnel Configuration">
+                    <p class="image-caption">Wind tunnel test setup with stall strip instrumentation and force balance</p>
+                </div>
+            </section>
+
+            <!-- Key Findings & Results -->
+            <section class="section">
+                <h2>Key Findings & Results</h2>
+                <ul>
+                    <li>Established baseline aerodynamic performance for clean NACA 0012 airfoil</li>
+                    <li>Quantified effects of stall strip height on stall onset and drag characteristics</li>
+                    <li>Demonstrated spanwise placement effects on flow control effectiveness</li>
+                    <li>Compared rigid vs. flexible strip performance across angle of attack range</li>
+                    <li>Identified optimal strip configurations balancing stall control with minimal drag penalty</li>
+                    <li>Generated comprehensive dataset supporting design recommendations for GA applications</li>
+                </ul>
+                <div class="image-container">
+                    <img src="finished-samples.jpg" alt="Fabricated Stall Strip Samples">
+                    <p class="image-caption">Fabricated stall strip samples demonstrating dimensional accuracy and surface finish consistency</p>
+                </div>
+            </section>
+
+            <!-- Real-World Applications -->
+            <section class="section">
+                <h2>Applications & Real-World Impact</h2>
+                <p>
+                    Stall strips offer significant practical benefits for General Aviation aircraft:
                 </p>
                 <ul>
-                    <li>Dimensional accuracy verification using precision instruments</li>
-                    <li>Surface roughness measurement and analysis</li>
-                    <li>Visual inspection for defects and imperfections</li>
-                    <li>Statistical process control for batch production</li>
-                    <li>Traceability and documentation for all manufactured samples</li>
-                </ul>
-            </section>
-
-            <!-- Material Studies -->
-            <section class="section">
-                <h2>Material Studies & Optimization</h2>
-                <p>
-                    Different materials were evaluated for specific applications:
-                </p>
-                <ul>
-                    <li>Rigid riblet materials for structural durability</li>
-                    <li>Flexible riblet materials for adaptive surfaces</li>
-                    <li>Material properties testing and validation</li>
-                    <li>Cost-benefit analysis for production scaling</li>
-                    <li>Environmental considerations and sustainability</li>
-                </ul>
-            </section>
-
-            <!-- Results & Achievements -->
-            <section class="section">
-                <h2>Results & Key Achievements</h2>
-                <ul>
-                    <li>Achieved high-resolution 3D printing with consistent surface quality across test samples</li>
-                    <li>Developed manufacturing protocols for both rigid and flexible riblet materials</li>
-                    <li>Implemented comprehensive quality control measures for dimensional accuracy and surface finish</li>
-                    <li>Optimized printing parameters for fine-scale surface features and geometric precision</li>
-                    <li>Created reproducible manufacturing process validated through multiple production runs</li>
-                    <li>Enabled seamless transition from research to production-scale manufacturing</li>
+                    <li>Improved aircraft safety through extended stall margin and more predictable stall behavior</li>
+                    <li>Enhanced handling characteristics in low-speed flight regimes critical to GA operations</li>
+                    <li>Passive flow control requiring no active systems, power, or pilot input</li>
+                    <li>Minimal structural modifications with cost-effective implementation</li>
+                    <li>Applicability across fixed-wing aircraft, UAVs, and rotorcraft platforms</li>
+                    <li>Potential for adaptive control in variable flight conditions using flexible materials</li>
                 </ul>
             </section>
 
@@ -362,14 +426,14 @@
             <section class="section">
                 <h2>Technologies & Tools</h2>
                 <div class="tech-list">
-                    <span class="tech-tag">3D Printing</span>
+                    <span class="tech-tag">Wind Tunnel Testing</span>
+                    <span class="tech-tag">Aerodynamic Analysis</span>
+                    <span class="tech-tag">Flow Control</span>
+                    <span class="tech-tag">CAD Design</span>
                     <span class="tech-tag">Additive Manufacturing</span>
-                    <span class="tech-tag">Surface Finishing</span>
-                    <span class="tech-tag">Quality Control</span>
-                    <span class="tech-tag">Metrology</span>
-                    <span class="tech-tag">CAD/CAM</span>
-                    <span class="tech-tag">Manufacturing</span>
-                    <span class="tech-tag">Process Optimization</span>
+                    <span class="tech-tag">Force Measurement</span>
+                    <span class="tech-tag">Flow Visualization</span>
+                    <span class="tech-tag">Data Analysis</span>
                 </div>
             </section>
 
@@ -377,15 +441,15 @@
             <section class="section">
                 <h2>Learnings & Impact</h2>
                 <p>
-                    This manufacturing project provided valuable insights into production processes:
+                    This research project provided valuable insights into passive flow control and practical aerodynamic design:
                 </p>
                 <ul>
-                    <li>Importance of robust process control in precision manufacturing</li>
-                    <li>Link between design intent and manufacturing reality</li>
-                    <li>Quality assurance strategies for research-grade production</li>
-                    <li>Scalability considerations for prototype to production transition</li>
-                    <li>Collaboration between design and manufacturing teams</li>
-                    <li>Continuous improvement methodology and lean principles</li>
+                    <li>Understanding of boundary layer transition mechanisms and flow separation control</li>
+                    <li>Integration of design, manufacturing, and experimental validation in research methodology</li>
+                    <li>Importance of iterative refinement through systematic parametric testing</li>
+                    <li>Practical considerations for translating research findings to aircraft design specifications</li>
+                    <li>Collaboration across aerodynamics, structures, and manufacturing disciplines</li>
+                    <li>Demonstration that passive systems can achieve active-control benefits with proper design</li>
                 </ul>
             </section>
         </div>
