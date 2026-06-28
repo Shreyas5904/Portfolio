@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stall Strip Aerodynamics Investigation - Shreyas B Karadi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3d6f;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1e3d6f;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover { background: #f0f0f0; }
+
+        .project-header {
+            background: linear-gradient(135deg, #1e3d6f 0%, #2c5aa0 50%, #4a90e2 100%);
+            color: white;
+            padding: 120px 0 60px 0;
+            margin-top: 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child { border-bottom: none; }
+
+        .section h2 {
+            font-size: 2.2rem;
+            color: #1e3d6f;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #1e3d6f;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #2c5aa0;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding: 0.5rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #1e3d6f;
+            font-weight: bold;
+        }
+
+        /* Data Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.97rem;
+        }
+
+        .data-table th {
+            background: #1e3d6f;
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 0.6rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-table tr:nth-child(even) { background: #f5f8ff; }
+        .data-table tr:hover { background: #eaf0ff; }
+
+        .table-caption {
+            font-style: italic;
+            color: #555;
+            font-size: 0.92rem;
+            margin-top: 0.4rem;
+            text-align: center;
+        }
+
+        /* Metric cards */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+        }
+
+        .result-card {
+            background: #f5f8ff;
+            border-left: 4px solid #1e3d6f;
+            border-radius: 6px;
+            padding: 1.2rem 1.4rem;
+        }
+
+        .result-card .metric {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e3d6f;
+        }
+
+        .result-card .metric-label {
+            font-size: 0.88rem;
+            color: #555;
+            margin-top: 0.3rem;
+            line-height: 1.4;
+        }
+
+        /* Callout */
+        .callout {
+            background: #eef3fb;
+            border-left: 4px solid #2c5aa0;
+            border-radius: 6px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.5rem 0;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            background: #1e3d6f;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #1e3d6f;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p { font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            .project-header h1 { font-size: 2rem; }
+            .project-meta { flex-direction: column; gap: 1rem; }
+            .section h2 { font-size: 1.8rem; }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <a href="shreyas_karadi_portfolio_v2.html" class="logo">Shreyas B Karadi</a>
+            <a href="shreyas_karadi_portfolio_v2.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </header>
+
+    <div class="project-header">
+        <div class="container">
+            <h1>Stall Strip Aerodynamics Investigation</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> Spring 2026 &nbsp;·&nbsp; ME 490</span>
+                <span><i class="fas fa-map-marker-alt"></i> Duke Aeroelasticity Lab</span>
+                <span><i class="fas fa-user"></i> Advisor: Earl Dowell</span>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+
+            <!-- Overview -->
+            <section class="section">
+                <h2>Overview</h2>
+                <p>
+                    Stall strips are passive flow-control devices mounted near the leading edge of an airfoil to deliberately modify stall behavior. Rather than allowing stall to develop suddenly and unpredictably, a correctly positioned strip forces early, controlled boundary-layer separation at a defined location — typically the wing root — preserving aileron effectiveness and giving the pilot recognizable warning well before full stall.
+                </p>
+                <p>
+                    The motivation for this project came directly from Private Pilot License (PPL) flight training. Observing that training aircraft consistently stall root-first, and learning that stall strips are the mechanism responsible, raised a concrete engineering question: how sensitive is this behavior to chordwise strip position, and what aerodynamic penalties does it introduce? This investigation answers that question experimentally through wind tunnel testing of a NACA 0012 airfoil, supplemented by 2D CFD analysis across three strip positions spanning the leading-edge region.
+                </p>
+                <div class="callout">
+                    <strong>Core trade-off under investigation:</strong> Stall strips reduce maximum lift coefficient (C<sub>L,max</sub>) and increase drag — but make stall gradual, predictable, and root-biased. This project quantifies that trade-off as a function of chordwise strip position.
+                </div>
+            </section>
+
+            <!-- Objectives -->
+            <section class="section">
+                <h2>Objectives</h2>
+                <p>The investigation addressed two primary engineering objectives:</p>
+                <ul>
+                    <li>Determine the optimal chordwise position of a triangular stall strip on a NACA 0012 airfoil — maximizing stall control while minimizing aerodynamic penalty.</li>
+                    <li>Quantify the effect of strip placement on C<sub>L,max</sub>, critical angle of attack, drag coefficient, and post-stall lift curve behavior across tested configurations.</li>
+                </ul>
+                <p style="margin-top: 1rem;">
+                    Three positions were tested: at the leading-edge apex (0% chord), 1.5% chord aft, and 3% chord aft, providing a systematic sweep through the region where strip effectiveness is expected to be highest.
+                </p>
+            </section>
+
+            <!-- Experimental Setup -->
+            <section class="section">
+                <h2>Experimental Setup</h2>
+
+                <h3>Airfoil Model & Strip Geometry</h3>
+                <p>
+                    A 3D-printed NACA 0012 airfoil (chord 120 mm, span 480 mm, aspect ratio 4:1) was used throughout testing. The higher aspect ratio compared to early design iterations was intentional: it amplifies measured lift and drag forces and reduces wind tunnel wall-interference effects. The triangular stall strip measured 23 mm base × 28 mm height, spanned 108 mm along the wing, and was mounted 24 mm from the root edge. Three chordwise positions were evaluated:
+                </p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Configuration</th>
+                            <th>Chordwise Location (%c)</th>
+                            <th>Distance from LE (mm)</th>
+                            <th>Chordwise Position (mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>POS-1 (LE apex)</td><td>0.0%</td><td>0</td><td>0</td></tr>
+                        <tr><td>POS-2</td><td>1.5%</td><td>1.8</td><td>118.2</td></tr>
+                        <tr><td>POS-3</td><td>3.0%</td><td>3.6</td><td>116.4</td></tr>
+                    </tbody>
+                </table>
+                <p class="table-caption">Table 1: Stall strip chordwise positions evaluated</p>
+
+                <h3>Mounting System Development</h3>
+                <p>
+                    Developing a reliable mounting system was one of the most significant engineering challenges of the project. Three hardware generations were iterated before arriving at a configuration capable of accurate aerodynamic measurement.
+                </p>
+                <ul>
+                    <li><strong>Initial cantilever design:</strong> A single-arm support attached directly to the airfoil. Simple to fabricate, but aerodynamic loading caused structural deflection and vibration that corrupted both AOA control and force readings.</li>
+                    <li><strong>Intermediate enclosed design:</strong> Improved alignment and rigidity, but still limited by a 3D-printed PLA support rod — the airfoil-rod joint remained a source of compliance under load.</li>
+                    <li><strong>Final configuration:</strong> The airfoil base was threaded and mated to a stainless-steel stud rod, providing a rigid connection along a well-defined central rotational axis. Symmetric dual mounts eliminated measurement bias; an enclosed housing maintained consistent alignment across test runs.</li>
+                </ul>
+                <p>
+                    Additional refinements included replacing the mounting rod material with carbon steel to prevent flutter, reducing airfoil infill and wall thickness to lower inertial effects near stall, and adopting a zero-lift reference procedure — rotating the airfoil until force balance reads zero lift, then incrementing AOA from that baseline — to remove systematic offset from manufacturing tolerances and mounting misalignment.
+                </p>
+
+                <h3>Instrumentation</h3>
+                <ul>
+                    <li>Three-axis force balance measuring lift and drag at each AOA increment; pre-calibrated against known applied weights to characterize measurement uncertainty before tunnel operation</li>
+                    <li>Freestream velocity 15 m/s, Reynolds number Re ≈ 100,000; AOA swept from 0° to 14° in uniform increments</li>
+                    <li>Wool tufts across the upper surface for qualitative flow visualization — providing direct evidence of separation onset location, reversed flow regions, and their extent as AOA increased</li>
+                </ul>
+            </section>
+
+            <!-- Results -->
+            <section class="section">
+                <h2>Results</h2>
+
+                <h3>Baseline Aerodynamic Performance</h3>
+                <p>
+                    The clean NACA 0012 airfoil reached a maximum lift coefficient of approximately 2.15 at 14° AOA, with lift increasing approximately linearly throughout the tested range. This provided the reference against which all strip configurations were benchmarked.
+                </p>
+
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="metric">2.15</div>
+                        <div class="metric-label">Baseline C<sub>L,max</sub> at 14° AOA (clean airfoil)</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="metric">2.03</div>
+                        <div class="metric-label">C<sub>L,max</sub> with strip at 0% chord<br><small>(&minus;5.7% vs baseline)</small></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="metric">2.09</div>
+                        <div class="metric-label">C<sub>L,max</sub> with strip at 1.5% chord<br><small>(&minus;3.0% vs baseline)</small></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="metric">1.77</div>
+                        <div class="metric-label">C<sub>L,max</sub> with strip at 3% chord<br><small>(&minus;17.7% vs baseline)</small></div>
+                    </div>
+                </div>
+
+                <h3>Lift Coefficient Comparison</h3>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>AOA (°)</th>
+                            <th>Baseline C<sub>L</sub></th>
+                            <th>Strip 0% C<sub>L</sub></th>
+                            <th>Strip 1.5% C<sub>L</sub></th>
+                            <th>Strip 3% C<sub>L</sub></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+                        <tr><td>2</td><td>0.507</td><td>0.507</td><td>0.507</td><td>0.558</td></tr>
+                        <tr><td>4</td><td>0.937</td><td>0.949</td><td>0.975</td><td>0.987</td></tr>
+                        <tr><td>6</td><td>1.342</td><td>1.304</td><td>1.342</td><td>1.216</td></tr>
+                        <tr><td>8</td><td>1.608</td><td>1.570</td><td>1.646</td><td>1.368</td></tr>
+                        <tr><td>10</td><td>1.887</td><td>1.748</td><td>1.887</td><td>1.558</td></tr>
+                        <tr><td>12</td><td>1.976</td><td>1.824</td><td>1.976</td><td>1.799</td></tr>
+                        <tr><td>14</td><td>2.153</td><td>2.027</td><td>2.089</td><td>1.773</td></tr>
+                    </tbody>
+                </table>
+                <p class="table-caption">Table 2: Lift coefficient vs. angle of attack for all configurations at Re ≈ 100,000</p>
+
+                <h3>Drag and Polar Curve Trends</h3>
+                <p>
+                    Moving the strip aft from 0% to 3% chord consistently increased drag coefficient (C<sub>D</sub>) across all angles of attack. The 3% chord strip produced the highest C<sub>D</sub> values at every data point, while the 0% and 1.5% configurations remained much closer to baseline. Polar curve analysis (C<sub>L</sub> vs C<sub>D</sub>) confirms this: baseline and the 0%/1.5% cases maintain a tighter performance envelope, while the 3% case diverges sharply at moderate-to-high AOA — indicative of larger separated regions generating additional pressure drag.
+                </p>
+
+                <h3>Flow Visualization</h3>
+                <p>
+                    Tuft observations directly corroborated the force data. As strip position moved aft, tufts exhibited unsteadiness and reversed flow at progressively lower angles of attack, with the 3% chord configuration showing visibly greater disturbance across the upper surface at moderate AOA. This is physically consistent with the strip disrupting an already-developing boundary layer rather than tripping it cleanly at the stagnation region.
+                </p>
+
+                <div class="callout">
+                    <strong>Key finding:</strong> The 3% chord placement introduced large separated flow regions and significantly degraded lift — without delivering better stall control than leading-edge placement. It penalized both performance and safety. The 1.5% chord position offered the best balance: lift within 3% of baseline at most angles, with effective stall modification.
+                </div>
+            </section>
+
+            <!-- Discussion -->
+            <section class="section">
+                <h2>Discussion</h2>
+
+                <h3>Why Leading-Edge Placement Is Optimal</h3>
+                <p>
+                    The fundamental mechanism of a stall strip is interaction with the boundary layer before it fully develops. Placed at the leading-edge apex (0% chord), the strip engages the incoming flow at the stagnation point — tripping transition and controlling separation onset before the boundary layer has momentum to resist disturbance. The result is a smoother, more progressive lift curve through stall.
+                </p>
+                <p>
+                    Moving to 3% chord changes this interaction fundamentally. The strip now encounters an established boundary layer, disrupting it at a less favorable location and producing a larger separated region downstream. This explains the data: more drag, reduced lift, and no compensating benefit in stall control quality. The 1.5% position splits the difference effectively — still within the high-sensitivity leading-edge region, but with slightly reduced abruptness of stall compared to the 0% case.
+                </p>
+
+                <h3>Drag Measurement Caveat</h3>
+                <p>
+                    Absolute drag coefficients in this study are elevated relative to published NACA 0012 reference data. The mounting rod and hardware contributed parasitic form drag that cannot be decoupled from airfoil drag without a separate tare measurement. However, this systematic offset is consistent across all configurations — comparative C<sub>D</sub> trends between strip positions are unaffected, and the performance conclusions remain valid.
+                </p>
+
+                <h3>Connection to Aviation Practice</h3>
+                <p>
+                    These results align directly with FAA guidance, which specifies stall strips should be located near the leading edge to initiate predictable root-first stall, preserving aileron authority through and beyond stall onset. The experimental data confirms the aerodynamic basis for this: leading-edge placement is not merely operationally conventional — it is the position where the strip most efficiently modifies boundary layer development with the smallest lift penalty.
+                </p>
+            </section>
+
+            <!-- Learnings -->
+            <section class="section">
+                <h2>Learnings & Engineering Takeaways</h2>
+
+                <h3>Experimental Design</h3>
+                <ul>
+                    <li>Mounting rigidity is not a secondary concern — compliance at the airfoil-rod interface directly corrupts AOA control and force measurement. Iterating from printed PLA to a threaded steel stud was the single most impactful improvement to data quality.</li>
+                    <li>Zero-lift referencing before each run eliminates systematic error from installation tolerances. Relying on geometric angle settings alone would have introduced uncorrectable offset in all lift curves.</li>
+                    <li>Pre-test force balance calibration against known loads is essential: it establishes measurement uncertainty before any data is collected, rather than discovering calibration issues in post-processing.</li>
+                </ul>
+
+                <h3>Aerodynamics</h3>
+                <ul>
+                    <li>The stagnation point is the optimal strip location: interaction with an undeveloped boundary layer enables controlled transition; aft placement disrupts an already-developing layer with less control authority and more drag penalty.</li>
+                    <li>The performance-safety trade-off is real but manageable. A leading-edge strip reduced C<sub>L,max</sub> by roughly 6% relative to the clean airfoil — a modest cost for meaningful improvement in stall predictability. The 3% chord position, by comparison, sacrificed 18% of C<sub>L,max</sub> for no additional safety benefit.</li>
+                    <li>Wool tuft visualization is a low-cost, high-information tool. It provided direct physical evidence of the mechanisms implied by force data, confirming that the 3% chord strip generated larger and earlier separation zones.</li>
+                </ul>
+
+                <h3>Project Process</h3>
+                <ul>
+                    <li>Grounding the research question in a real flight training observation produced a more focused investigation than a purely theoretical starting point would have. Motivation shaped methodology.</li>
+                    <li>Mounting system development consumed significant project time but was not wasted — shortcutting hardware iteration would have produced data too noisy to interpret. Infrastructure investment is part of experimental research.</li>
+                    <li>CFD and wind tunnel testing were complementary: CFD guided initial strip position selection and provided flow-field context; experiment validated the trends and revealed the drag offset introduced by the physical setup.</li>
+                </ul>
+
+                <h3>Future Directions</h3>
+                <ul>
+                    <li>Unsteady and full 3D CFD analysis to capture spanwise flow effects not resolved by the 2D model</li>
+                    <li>Evaluation of stall strips fabricated from flexible materials (e.g., TPU) to assess whether strip compliance can further soften post-stall behavior</li>
+                    <li>Separate drag tare measurements to isolate airfoil C<sub>D</sub> from mounting hardware parasitic drag</li>
+                    <li>Extension to higher Reynolds numbers and compressible flow conditions for applicability beyond low-speed GA aircraft</li>
+                </ul>
+            </section>
+
+            <!-- Technologies -->
+            <section class="section">
+                <h2>Technologies & Tools</h2>
+                <div class="tech-list">
+                    <span class="tech-tag">Wind Tunnel Testing</span>
+                    <span class="tech-tag">2D CFD (RANS)</span>
+                    <span class="tech-tag">NACA 0012 Airfoil</span>
+                    <span class="tech-tag">Force Balance Instrumentation</span>
+                    <span class="tech-tag">Tuft Flow Visualization</span>
+                    <span class="tech-tag">3D Printing (FDM / PLA)</span>
+                    <span class="tech-tag">CAD / Parametric Modeling</span>
+                    <span class="tech-tag">Aerodynamic Data Analysis</span>
+                    <span class="tech-tag">Passive Flow Control</span>
+                    <span class="tech-tag">Boundary Layer Mechanics</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Shreyas B Karadi. All rights reserved. | Mechanical Engineering | Duke University</p>
+        </div>
+    </footer>
+
+</body>
+</html>
