@@ -216,6 +216,40 @@
             line-height: 1.8;
         }
 
+        /* Images */
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .image-caption {
+            margin-top: 0.8rem;
+            font-style: italic;
+            color: #666;
+            font-size: 0.93rem;
+            line-height: 1.5;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid .image-container { margin: 0; }
+
+        @media (max-width: 680px) {
+            .image-grid { grid-template-columns: 1fr; }
+        }
+
         .tech-list {
             display: flex;
             flex-wrap: wrap;
@@ -341,6 +375,17 @@
                     Additional refinements included replacing the mounting rod material with carbon steel to prevent flutter, reducing airfoil infill and wall thickness to lower inertial effects near stall, and adopting a zero-lift reference procedure — rotating the airfoil until force balance reads zero lift, then incrementing AOA from that baseline — to remove systematic offset from manufacturing tolerances and mounting misalignment.
                 </p>
 
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="img_mounting_cad.png" alt="Final mounting configuration CAD render">
+                        <p class="image-caption">Final mounting configuration — threaded stainless-steel stud rod, central rotational axis, and enclosed force balance housing</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="img_wind_tunnel.png" alt="Airfoil installed in wind tunnel">
+                        <p class="image-caption">NACA 0012 airfoil installed in the Duke wind tunnel test section with wool tufts applied to the upper surface</p>
+                    </div>
+                </div>
+
                 <h3>Instrumentation</h3>
                 <ul>
                     <li>Three-axis force balance measuring lift and drag at each AOA increment; pre-calibrated against known applied weights to characterize measurement uncertainty before tunnel operation</li>
@@ -411,6 +456,11 @@
                 <p>
                     Tuft observations directly corroborated the force data. As strip position moved aft, tufts exhibited unsteadiness and reversed flow at progressively lower angles of attack, with the 3% chord configuration showing visibly greater disturbance across the upper surface at moderate AOA. This is physically consistent with the strip disrupting an already-developing boundary layer rather than tripping it cleanly at the stagnation region.
                 </p>
+
+                <div class="image-container">
+                    <img src="img_tuft.png" alt="Wool tuft flow visualization at stall">
+                    <p class="image-caption">Wool tuft visualization on the upper surface near stall — curling and reversed tufts indicate separated flow regions; the spanwise and chordwise extent of separation varied measurably with strip position</p>
+                </div>
 
                 <div class="callout">
                     <strong>Key finding:</strong> The 3% chord placement introduced large separated flow regions and significantly degraded lift — without delivering better stall control than leading-edge placement. It penalized both performance and safety. The 1.5% chord position offered the best balance: lift within 3% of baseline at most angles, with effective stall modification.
