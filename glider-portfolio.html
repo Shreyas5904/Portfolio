@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Glider Performance Improvement - Shreyas B Karadi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3d6f;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1e3d6f;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover { background: #f0f0f0; }
+
+        .project-header {
+            background: linear-gradient(135deg, #1b4f35 0%, #2e7d52 50%, #4caf80 100%);
+            color: white;
+            padding: 120px 0 60px 0;
+            margin-top: 60px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 1.05rem;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 20px;
+            padding: 0.4rem 1rem;
+            font-size: 0.95rem;
+            margin-top: 1.2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child { border-bottom: none; }
+
+        .section h2 {
+            font-size: 2.2rem;
+            color: #1b4f35;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #2e7d52;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #2e7d52;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 1rem 0;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding: 0.45rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #2e7d52;
+            font-weight: bold;
+        }
+
+        /* Callout */
+        .callout {
+            background: #eef7f2;
+            border-left: 4px solid #2e7d52;
+            border-radius: 6px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.5rem 0;
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        /* Role highlight box */
+        .role-box {
+            background: #f0f9f4;
+            border: 1px solid #b2dfcf;
+            border-radius: 10px;
+            padding: 1.4rem 1.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .role-box h4 {
+            color: #1b4f35;
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        /* Metric cards */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0;
+        }
+
+        .result-card {
+            background: #f0f9f4;
+            border-left: 4px solid #2e7d52;
+            border-radius: 6px;
+            padding: 1.2rem 1.4rem;
+        }
+
+        .result-card .metric {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1b4f35;
+        }
+
+        .result-card .metric-label {
+            font-size: 0.88rem;
+            color: #555;
+            margin-top: 0.3rem;
+            line-height: 1.4;
+        }
+
+        /* Data table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.97rem;
+        }
+
+        .data-table th {
+            background: #1b4f35;
+            color: white;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 0.6rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-table tr:nth-child(even) { background: #f0f9f4; }
+        .data-table tr:hover { background: #d8f0e4; }
+
+        .table-caption {
+            font-style: italic;
+            color: #555;
+            font-size: 0.92rem;
+            margin-top: 0.4rem;
+            text-align: center;
+        }
+
+        .met { color: #2e7d52; font-weight: 700; }
+        .not-met { color: #c0392b; font-weight: 700; }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            background: #1b4f35;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #1b4f35;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p { font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            .project-header h1 { font-size: 2rem; }
+            .project-meta { flex-direction: column; gap: 1rem; }
+            .section h2 { font-size: 1.8rem; }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <a href="shreyas_karadi_portfolio_v2.html" class="logo">Shreyas B Karadi</a>
+            <a href="shreyas_karadi_portfolio_v2.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </header>
+
+    <div class="project-header">
+        <div class="container">
+            <h1>Electric Glider Performance Improvement</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar"></i> Spring 2026 &nbsp;·&nbsp; ME 424L</span>
+                <span><i class="fas fa-users"></i> Team of 7 &nbsp;·&nbsp; Duke University</span>
+                <span><i class="fas fa-plane"></i> Client: Michimasa Fujino (HondaJet Founder)</span>
+            </div>
+            <div class="role-badge">
+                <i class="fas fa-user-cog"></i> &nbsp; Role: Flight Testing Engineer &amp; Flight Sciences Lead
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+
+            <!-- Overview -->
+            <section class="section">
+                <h2>Overview</h2>
+                <p>
+                    RC gliders offer an accessible and low-cost platform for aerodynamic experimentation, but their low-speed flight performance is limited by fixed-geometry wings that are not optimized for slow, efficient gliding. This project set out to address that directly: modify a commercial 2-meter RC glider with a custom trailing-edge flap and aileron system to reduce stall speed and improve glide efficiency during unpowered flight.
+                </p>
+                <p>
+                    The client, Michimasa Fujino (founder of HondaJet), sought a solution that was low-cost, experimentally validated, and transferable in insight to larger-scale aerodynamic applications. The team of seven engineers covered aerodynamic simulation, structural design, avionics integration, and instrumented flight testing across a semester of iterative development.
+                </p>
+                <div class="callout">
+                    <strong>Design targets:</strong> ≥10% reduction in stall speed and ≥5% reduction in sink rate — achieved simultaneously while maintaining structural integrity and limiting weight growth. Stall speed targets were met and surpassed; sink rate improvement proved more elusive due to the drag penalty of the flap mechanism.
+                </div>
+
+                <div class="role-box">
+                    <h4><i class="fas fa-user-cog"></i> &nbsp; My Contribution — Flight Testing Engineer &amp; Flight Sciences</h4>
+                    <ul>
+                        <li>Led aerodynamic modeling: baseline wing CAD, 2D XFOIL panel simulations for lift/drag polars, and 3D Euler CFD to verify finite-wing behavior</li>
+                        <li>Designed the flap geometry in CAD and created the full assembly, defining chord extension, deflection limits, and integration with the existing wing structure</li>
+                        <li>Developed and executed structured flight test plans — defined glide segment extraction criteria, performance metrics, and abort/safety procedures</li>
+                        <li>Led all four flight sessions at Duke Forest (February–April 2026), managing pre-flight checklists, real-time telemetry monitoring via DroneBridge, and post-flight data logging</li>
+                        <li>Processed ArduPilot DataFlash logs using Python/pymavlink to extract glide segments, compute stall speed estimates, and derive median sink rates across all configurations</li>
+                        <li>Fabricated wind tunnel jigs and test fixtures; coordinated with structures team to align analytical predictions against wind tunnel and field results</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Objectives -->
+            <section class="section">
+                <h2>Objectives</h2>
+                <ul>
+                    <li>Reduce stall speed by ≥10% through flap-induced increase in C<sub>L,max</sub></li>
+                    <li>Reduce median glide sink rate by ≥5% through improved lift efficiency</li>
+                    <li>Maintain structural integrity under aerodynamic loading across all configurations</li>
+                    <li>Keep weight increase within 3% to avoid degrading the very metrics being improved</li>
+                    <li>Validate analytical and computational predictions with instrumented wind tunnel and field flight data</li>
+                </ul>
+            </section>
+
+            <!-- Engineering Approach -->
+            <section class="section">
+                <h2>Engineering Approach</h2>
+
+                <h3>Aerodynamic Analysis (Flight Sciences)</h3>
+                <p>
+                    The baseline airfoil geometry was not provided by the manufacturer, so the team digitized it by tracing the wing cross-section and matching it to known analytical profiles using a Euclidean distance minimization algorithm. The closest match was the N11 airfoil, which was then analyzed in XFOIL to generate pressure polars across the low Reynolds number flight envelope. A hinged trailing-edge flap was modeled as a chord extension that sharpens the blunt trailing edge, increasing camber and C<sub>L,max</sub> at a deflection of δ = 10.5°. XFOIL predicted sufficient C<sub>L</sub> gains to meet both the stall speed and sink rate targets.
+                </p>
+                <p>
+                    A 3D CAD model of the wing was constructed from cross-sectional scans to enable preliminary CFD analysis (Euler equations), which verified solution convergence and captured finite-wing spanwise effects that 2D XFOIL cannot resolve. The governing stall speed and sink rate equations were derived from first principles, directly connecting C<sub>L,max</sub> and the C<sub>L</sub><sup>3/2</sup>/C<sub>D</sub> aerodynamic efficiency parameter to the measurable performance targets.
+                </p>
+
+                <h3>Flap &amp; Aileron Design</h3>
+                <p>
+                    The plain trailing-edge flap was selected over more complex configurations (slotted, Fowler) for its simplicity, lower fabrication risk, and sufficient predicted performance. PLA plastic was chosen as the control surface material after a structured trade-off against foam and balsa — it offered the geometric precision and attachment reliability required for repeatable aerodynamic testing, at a modest weight penalty offset by ribbed internal structures. Control surfaces were additively manufactured in sections, joined with a welded interlocking seam, and attached to the wing via tape hinges, replicating the stock aileron hinge method.
+                </p>
+                <p>
+                    Deflection limits were determined directly from the hinge geometry: 30° maximum for flaps, 40° for ailerons. FEA in SolidWorks confirmed that von Mises stresses remained below PLA yield strength at representative flight speeds, with peak deformation at the trailing-edge tip — consistent with cantilever loading — and stress concentrations localized at the hinge line, which guided structural reinforcement decisions.
+                </p>
+
+                <h3>Avionics &amp; Data Acquisition</h3>
+                <p>
+                    ArduPilot running ArduPlane firmware was selected as the flight controller over microcontroller alternatives for its native sensor fusion (IMU, barometer, pitot tube), microsecond-timestamped DataFlash logging, and MAVLink compatibility. A digital pitot tube provided direct airspeed measurement at 8.5 Hz — critical for stall speed estimation, where GPS groundspeed would be unreliable in any wind. Two XIAO ESP32C3 modules running DroneBridge firmware provided a lightweight wireless telemetry link, streaming live altitude, airspeed, sink rate, and flap state to the ground station laptop during each flight.
+                </p>
+            </section>
+
+            <!-- Results -->
+            <section class="section">
+                <h2>Results</h2>
+
+                <h3>Flight Testing Summary</h3>
+                <p>
+                    Four flight sessions were conducted at Blackwood Field, Duke Forest between February and April 2026, spanning three performance configurations. Glide segments were automatically extracted in post-processing by filtering for throttle-idle, altitude ≥2 m AGL, roll ≤±30°, and corrected airspeed ≥2 m/s — ensuring only straight, unpowered glide data entered the analysis.
+                </p>
+
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="metric">5.50 m/s</div>
+                        <div class="metric-label">Baseline stall speed</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="metric">−17%</div>
+                        <div class="metric-label">Stall reduction — flap retracted<br><small>(target: −10%)</small></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="metric">−31%</div>
+                        <div class="metric-label">Stall reduction — flap deployed<br><small>(target: −10%)</small></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="metric">+27–28%</div>
+                        <div class="metric-label">Sink rate change — both modified configs<br><small>(target: −5%)</small></div>
+                    </div>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Configuration</th>
+                            <th>Samples</th>
+                            <th>Stall Speed (m/s)</th>
+                            <th>Δ Stall vs Baseline</th>
+                            <th>Sink Rate (m/s)</th>
+                            <th>Δ Sink Rate vs Baseline</th>
+                            <th>Target Met?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Baseline (Log 24)</td>
+                            <td>15</td>
+                            <td>5.50</td>
+                            <td>—</td>
+                            <td>3.17</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Flap Retracted (Logs 128+119)</td>
+                            <td>108</td>
+                            <td>4.57</td>
+                            <td class="met">−17.0%</td>
+                            <td>4.02</td>
+                            <td class="not-met">+26.9%</td>
+                            <td>Partial</td>
+                        </tr>
+                        <tr>
+                            <td>Flap Deployed (Logs 112+119)</td>
+                            <td>36</td>
+                            <td>3.81</td>
+                            <td class="met">−30.8%</td>
+                            <td>4.06</td>
+                            <td class="not-met">+28.3%</td>
+                            <td>Partial</td>
+                        </tr>
+                        <tr style="background:#f9f9f9; font-style:italic;">
+                            <td>Project Targets</td>
+                            <td>—</td>
+                            <td>≤4.95</td>
+                            <td>−10%</td>
+                            <td>≤3.01</td>
+                            <td>−5%</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-caption">Table 1: Flight test results by configuration. Stall speed targets exceeded in both modified configurations; sink rate degraded due to added mass and flap mechanism drag.</p>
+
+                <h3>Wind Tunnel Validation</h3>
+                <p>
+                    Wind tunnel testing at the Duke facility confirmed the aerodynamic trend: at δ = 10° flap deflection, lift was consistently higher across all tested angles of attack compared to the baseline unmodified wing. Stall onset (characterized by lift drop and increased scatter) occurred at higher absolute lift values with the flap deployed, directly validating the predicted C<sub>L,max</sub> increase that underpins the stall speed improvement observed in flight.
+                </p>
+
+                <div class="callout">
+                    <strong>Key finding:</strong> Stall speed targets were exceeded by a wide margin — the deployed flap achieved nearly 3× the required reduction (−30.8% vs −10% target). The sink rate target was not met; the flap mechanism and CG shift introduced more parasite drag and trim penalty than the camber increase could overcome in terms of glide efficiency.
+                </div>
+            </section>
+
+            <!-- Discussion -->
+            <section class="section">
+                <h2>Discussion</h2>
+
+                <h3>Why Stall Speed Improved Beyond Target</h3>
+                <p>
+                    Flap deployment raises camber and thus C<sub>L,max</sub>, directly reducing V<sub>stall</sub> per the stall speed equation. Even with the flap retracted, the extended chord of the modified wing contributed a 17% stall speed reduction — suggesting that the geometric chord and span change alone carries significant aerodynamic benefit. The deployed configuration achieved nearly triple the required reduction, confirming that the flap design is aerodynamically effective.
+                </p>
+
+                <h3>Why Sink Rate Degraded</h3>
+                <p>
+                    Minimum sink rate requires maximizing C<sub>L</sub><sup>3/2</sup>/C<sub>D</sub>. While flap deployment increases C<sub>L</sub>, it simultaneously increases pressure drag — the flap camber change raises the profile drag enough to counteract the lift benefit in terms of glide efficiency. The added mass of the PLA control surfaces (12.4% total weight increase, well above the 3% target) further degraded the sink metric by increasing the weight-to-area loading. CG shifts between configurations also introduced trim differences not captured in the XFOIL analysis, requiring different elevator settings that carried their own drag penalty.
+                </p>
+
+                <h3>Analytical vs. Measured Comparison</h3>
+                <p>
+                    XFOIL's 2D predictions aligned directionally with flight results: raising C<sub>L,max</sub> via flap deployment does lower stall speed, and the magnitude of reduction scales with deflection angle. However, XFOIL cannot capture induced drag from finite-wing effects, CG-induced trim changes, or outdoor wind variability — all of which contributed to the sink rate deviation from the analytical model. This highlights the essential role of instrumented flight testing as the ground truth validation stage.
+                </p>
+            </section>
+
+            <!-- Learnings -->
+            <section class="section">
+                <h2>Learnings &amp; Engineering Takeaways</h2>
+
+                <h3>Flight Testing</h3>
+                <ul>
+                    <li>Automated glide segment extraction from flight logs — filtering by throttle, altitude, roll, and airspeed — produced clean, comparable datasets across configurations and removed the subjectivity of manual data selection.</li>
+                    <li>Live telemetry via DroneBridge proved its value immediately: the team could identify flights with excessive wind or poor glide attitude in real time and choose to re-fly, rather than discovering data quality issues after landing.</li>
+                    <li>Pre-liftoff pitot bias correction was essential — without it, all stall speed estimates would have been systematically offset. Discovering this from Log 112 data and adding it to post-processing was a concrete example of flight data driving procedural improvement.</li>
+                    <li>FBWA auto-stabilization (enabled in later flights) significantly increased usable glide samples per flight by maintaining level wings at slow airspeeds — Log 128 yielded 97 clean samples versus 15 in the manual baseline flight.</li>
+                </ul>
+
+                <h3>Aerodynamics &amp; Design</h3>
+                <ul>
+                    <li>Weight is a first-order parameter for glide performance. The 12.4% mass increase (far above the 3% target) directly undermined the sink rate goal, demonstrating that aerodynamic gains can be erased by structural overhead if not managed from the outset.</li>
+                    <li>Separating lift augmentation (flaps) and roll control (ailerons) into independent surfaces, rather than a flaperon, was the right architecture: it simplified control behavior and allowed cleaner isolation of flap aerodynamic effects during analysis.</li>
+                    <li>2D XFOIL analysis is valuable for rapid iteration but insufficient as a standalone validation tool. The combination of XFOIL → 3D CFD → wind tunnel → flight test is the correct fidelity ladder for an experimentally grounded aerodynamic project.</li>
+                </ul>
+
+                <h3>Team &amp; Process</h3>
+                <ul>
+                    <li>Coordinating across Flight Sciences, Structures, and Avionics teams required clearly defined interfaces: the flap geometry output from aerodynamic analysis had to be handed off to Structures with explicit chord, deflection, and load requirements, not just a CAD file.</li>
+                    <li>Flight testing at an outdoor field introduced environmental variability (wind, temperature) that cannot be fully controlled. Normalization of airspeed data for density altitude and the use of bias corrections were necessary to make comparisons across sessions meaningful.</li>
+                </ul>
+
+                <h3>Future Directions</h3>
+                <ul>
+                    <li>Lightweight flexible materials (e.g., carbon-reinforced thin-ply composites) for the flap surface to meet the weight constraint without sacrificing stiffness</li>
+                    <li>Iterative flap deflection testing across a range of angles (not just δ = 10°) to find the optimum C<sub>L</sub><sup>3/2</sup>/C<sub>D</sub> point that minimizes sink rate rather than simply maximizing C<sub>L,max</sub></li>
+                    <li>Indoor or low-wind testing environment to eliminate wind variability from performance comparisons</li>
+                    <li>Active CG management between configurations to eliminate trim-induced drag penalties</li>
+                </ul>
+            </section>
+
+            <!-- Technologies -->
+            <section class="section">
+                <h2>Technologies &amp; Tools</h2>
+                <div class="tech-list">
+                    <span class="tech-tag">XFOIL (2D Panel Method)</span>
+                    <span class="tech-tag">3D CFD (Euler)</span>
+                    <span class="tech-tag">SolidWorks FEA</span>
+                    <span class="tech-tag">ArduPilot / ArduPlane</span>
+                    <span class="tech-tag">Pitot-Static Airspeed Sensing</span>
+                    <span class="tech-tag">DroneBridge Telemetry</span>
+                    <span class="tech-tag">pymavlink / Python</span>
+                    <span class="tech-tag">Wind Tunnel Testing</span>
+                    <span class="tech-tag">FDM 3D Printing (PLA)</span>
+                    <span class="tech-tag">CAD (Wing &amp; Flap)</span>
+                    <span class="tech-tag">FAA Part 107 UAS Operations</span>
+                    <span class="tech-tag">Flight Data Analysis</span>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Shreyas B Karadi. All rights reserved. | Mechanical Engineering | Duke University</p>
+        </div>
+    </footer>
+
+</body>
+</html>
