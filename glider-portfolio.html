@@ -357,7 +357,10 @@
                     <img src="g_assembled.png" alt="Fully assembled modified glider prior to flight testing">
                     <p class="image-caption">Flap installed on the trailing edge at 30° deflection — tape hinge connects PLA surface to foam wing structure</p>
                 </div>
-
+                <div class="image-container">
+                        <img src="g_original_vs_modified.png" alt="Original glider wing">
+                        <p class="image-caption">Fully assembled Skynetic Andes 2000 mm glider with PLA flap and aileron system installed, prior to flight testing at Duke Forest</p>
+                    </div>
                 <div class="role-box">
                     <h4><i class="fas fa-user-cog"></i> &nbsp; My Contribution — Flight Testing Engineer &amp; Flight Sciences</h4>
                     <ul>
@@ -400,6 +403,26 @@
                     The plain trailing-edge flap was selected over more complex configurations (slotted, Fowler) for its simplicity, lower fabrication risk, and sufficient predicted performance. PLA plastic was chosen as the control surface material after a structured trade-off against foam and balsa — it offered the geometric precision and attachment reliability required for repeatable aerodynamic testing, at a modest weight penalty offset by ribbed internal structures. Control surfaces were additively manufactured in sections, joined with a welded interlocking seam, and attached to the wing via tape hinges, replicating the stock aileron hinge method.
                 </p>
                 <div class="image-grid">
+                    
+                <div class="image-container" style="max-width:500px; margin: 1.5rem auto;">
+                    <img src="g_ribbed_structure.png" alt="Ribbed internal flap structure">
+                    <p class="image-caption">Modified glider — PLA trailing-edge flaps and redesigned ailerons replace the stock control surfaces</p>
+                </div>
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="g_avionics.png" alt="Avionics integrated inside glider fuselage">
+                        <p class="image-caption">Internal ribbed structure of the PLA flap — material removed to reduce mass while preserving spanwise stiffness and load paths</p>
+                    </div>
+                </div>
+                <p>
+                    Deflection limits were determined directly from the hinge geometry: 30° maximum for flaps, 40° for ailerons. FEA in SolidWorks confirmed that von Mises stresses remained below PLA yield strength at representative flight speeds, with peak deformation at the trailing-edge tip — consistent with cantilever loading — and stress concentrations localized at the hinge line, which guided structural reinforcement decisions.
+                </p>
+
+                <h3>Avionics &amp; Data Acquisition</h3>
+                <p>
+                    ArduPilot running ArduPlane firmware was selected as the flight controller over microcontroller alternatives for its native sensor fusion (IMU, barometer, pitot tube), microsecond-timestamped DataFlash logging, and MAVLink compatibility. A digital pitot tube provided direct airspeed measurement at 8.5 Hz — critical for stall speed estimation, where GPS groundspeed would be unreliable in any wind. Two XIAO ESP32C3 modules running DroneBridge firmware provided a lightweight wireless telemetry link, streaming live altitude, airspeed, sink rate, and flap state to the ground station laptop during each flight.
+                </p>
+                     <div class="image-grid">
                     <div class="image-container">
                         <img src="g_original_vs_modified.png" alt="Original glider wing">
                         <p class="image-caption">Fully assembled Skynetic Andes 2000 mm glider with PLA flap and aileron system installed, prior to flight testing at Duke Forest</p>
@@ -409,33 +432,8 @@
                         <p class="image-caption">ArduPilot flight controller, pitot tube, and ESP32C3 DroneBridge modules integrated inside the glider's fuselage bay</p>
                     </div>
                 </div>
-
-                <div class="image-container" style="max-width:500px; margin: 1.5rem auto;">
-                    <img src="g_ribbed_structure.png" alt="Ribbed internal flap structure">
-                    <p class="image-caption">Modified glider — PLA trailing-edge flaps and redesigned ailerons replace the stock control surfaces</p>
-                </div>
-
-                <p>
-                    Deflection limits were determined directly from the hinge geometry: 30° maximum for flaps, 40° for ailerons. FEA in SolidWorks confirmed that von Mises stresses remained below PLA yield strength at representative flight speeds, with peak deformation at the trailing-edge tip — consistent with cantilever loading — and stress concentrations localized at the hinge line, which guided structural reinforcement decisions.
-                </p>
-
-                <h3>Avionics &amp; Data Acquisition</h3>
-                <p>
-                    ArduPilot running ArduPlane firmware was selected as the flight controller over microcontroller alternatives for its native sensor fusion (IMU, barometer, pitot tube), microsecond-timestamped DataFlash logging, and MAVLink compatibility. A digital pitot tube provided direct airspeed measurement at 8.5 Hz — critical for stall speed estimation, where GPS groundspeed would be unreliable in any wind. Two XIAO ESP32C3 modules running DroneBridge firmware provided a lightweight wireless telemetry link, streaming live altitude, airspeed, sink rate, and flap state to the ground station laptop during each flight.
-                </p>
             </section>
 
-                <div class="image-grid">
-                    <div class="image-container">
-                        <img src="g_avionics.png" alt="Avionics integrated inside glider fuselage">
-                        <p class="image-caption">Internal ribbed structure of the PLA flap — material removed to reduce mass while preserving spanwise stiffness and load paths</p>
-                    </div>
-                    <div class="image-container">
-                        <img src="g_wind_tunnel.png" alt="Wind tunnel testing with AOA fixtures">
-                        <p class="image-caption">Wind tunnel testing with varied angle-of-attack fixtures — lift and drag measured at 1° increments through stall</p>
-                    </div>
-                </div>
-            </section>
 
             <!-- Results -->
             <section class="section">
@@ -524,8 +522,8 @@
                         <p class="image-caption">Flight telemetry for all four logs — altitude, airspeed, attitude, throttle, and flap channel. Motor-on periods shaded orange, flap-deployed periods blue; red dots mark extracted glide segments</p>
                     </div>
                     <div class="image-container">
-                        <img src="g_glide_polar.png" alt="Glide polar comparison across configurations">
-                        <p class="image-caption">Three-segment glide polar (sink rate vs. corrected airspeed) — solid lines show median sink rate per configuration, shaded bands show interquartile range</p>
+                        <img src="g_wind_tunnel.png" alt="Wind tunnel testing with AOA fixtures">
+                        <p class="image-caption">Wind tunnel testing with varied angle-of-attack fixtures — lift and drag measured at 1° increments through stall</p>
                     </div>
                 </div>
 
