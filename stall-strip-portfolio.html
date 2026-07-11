@@ -542,6 +542,113 @@
             </section>
 
         </div>
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             SEPARATE INVESTIGATION — ME 536 Transonic CFD Study
+             This is a distinct follow-on study from the wind tunnel work above.
+        ════════════════════════════════════════════════════════════════════ -->
+        <div style="border-top: 4px solid #1e3d6f; margin: 3rem 0 0 0;"></div>
+
+        <div class="container">
+            <div style="background: #f0f4fb; border-left: 5px solid #1e3d6f; border-radius: 6px; padding: 1rem 1.5rem; margin: 2.5rem 0 0 0;">
+                <p style="margin: 0; font-size: 1rem; color: #1e3d6f; font-weight: 600;">
+                    <i class="fas fa-info-circle"></i> &nbsp; The following is a separate investigation completed for ME 536 (Compressible Fluid Flow). It extends the stall strip concept into the transonic regime using CFD, and is presented here as a companion study to the low-speed wind tunnel work above.
+                </p>
+            </div>
+
+            <section class="section">
+                <h2>Transonic CFD Investigation — ME 536</h2>
+                <p>
+                    The low-speed wind tunnel work above characterizes stall strip behavior at Re ≈ 100,000 in the incompressible regime. This companion study examines what happens when the same leading-edge geometry is introduced into compressible flow — specifically, whether stall strips can act as passive devices to mitigate shock-induced separation in the transonic regime (M = 0.7–1.2).
+                </p>
+                <p>
+                    In transonic flow, local supersonic pockets form on the airfoil upper surface and terminate in shock waves. These shocks interact with the boundary layer, causing shock-induced separation — a fundamentally different failure mode from the low-speed stall addressed by the experimental work. The hypothesis was that a leading-edge stall strip, by thickening the boundary layer upstream of the shock, might soften the shock–boundary layer interaction and reduce abrupt lift loss.
+                </p>
+
+                <h3>Methodology</h3>
+                <p>
+                    A NACA 0012 airfoil with a triangular leading-edge stall strip was modeled in CFD at six freestream Mach numbers: 0.7, 0.8, 0.9, 1.0, 1.1, and 1.2. Steady-state compressible RANS simulations were run at zero angle of attack, with key outputs including velocity magnitude contours, shock location, and lift and drag coefficients. XFOIL was used for baseline subsonic reference but was not applied above M ≈ 0.7 due to its known inability to resolve shock formation.
+                </p>
+
+                <h3>Results — Aerodynamic Coefficients</h3>
+                <p>
+                    The drag coefficient rose gradually from C<sub>D</sub> = 0.087 at M = 0.7 to 0.094 at M = 0.9, then spiked sharply to C<sub>D</sub> = 0.290 at M = 1.0 — the transonic drag divergence signature of shock wave formation. Beyond M = 1.0, C<sub>D</sub> dropped to 0.051 at M = 1.1 and 0.025 at M = 1.2, consistent with flow reorganization into the supersonic regime. The lift coefficient showed non-zero values (C<sub>L</sub> ≈ 0.19–0.23) in the subsonic range at zero AOA, which is physically unrealistic for a symmetric airfoil — attributed to numerical asymmetry from mesh imbalance or slight geometric misalignment rather than aerodynamic lift generation. At M = 1.0 lift dropped sharply (C<sub>L</sub> = 0.029) as the shock reduced the upper surface suction peak, and approached zero at M = 1.2 as the flow became shock-dominated.
+                </p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Mach</th>
+                            <th>Velocity (m/s)</th>
+                            <th>Drag (N)</th>
+                            <th>Lift (N)</th>
+                            <th>C<sub>D</sub></th>
+                            <th>C<sub>L</sub></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>0.7</td><td>238</td><td>151.46</td><td>368.01</td><td>0.087</td><td>0.212</td></tr>
+                        <tr><td>0.8</td><td>272</td><td>265.35</td><td>644.66</td><td>0.093</td><td>0.226</td></tr>
+                        <tr><td>0.9</td><td>306</td><td>411.62</td><td>824.92</td><td>0.094</td><td>0.189</td></tr>
+                        <tr><td>1.0</td><td>340</td><td>1286.03</td><td>129.49</td><td>0.290</td><td>0.029</td></tr>
+                        <tr><td>1.1</td><td>374</td><td>354.67</td><td>383.86</td><td>0.051</td><td>0.055</td></tr>
+                        <tr><td>1.2</td><td>408</td><td>219.14</td><td>15.95</td><td>0.025</td><td>0.002</td></tr>
+                    </tbody>
+                </table>
+                <p class="table-caption">Table: Aerodynamic coefficients across the transonic Mach sweep, NACA 0012 with leading-edge stall strip at 0° AOA</p>
+
+                <h3>CFD Flow Field Visualization</h3>
+                <p>
+                    Velocity magnitude contours across the six Mach conditions show the progressive development of shock structures on the airfoil upper surface. At M = 0.7 the flow is largely subsonic with mild distortion from the strip. By M = 0.8 a localized deceleration zone indicates a weak shock onset. At M = 0.9 a distinct shock is visible on the upper surface, and at M = 1.0 the shock is pronounced with significant boundary layer thickening and wake separation. At M = 1.1 and 1.2 the shock structure dominates and the separated wake grows considerably.
+                </p>
+
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="cfd_m07.png" alt="CFD velocity contours M=0.7">
+                        <p class="image-caption">M = 0.7 — largely subsonic flow, mild leading-edge disturbance from stall strip, no shock present</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="cfd_m08.png" alt="CFD velocity contours M=0.8">
+                        <p class="image-caption">M = 0.8 — onset of compressibility effects; localized deceleration zone indicates emerging weak shock</p>
+                    </div>
+                </div>
+
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="cfd_m09.png" alt="CFD velocity contours M=0.9">
+                        <p class="image-caption">M = 0.9 — distinct shock visible on upper surface; flow separates downstream with increased boundary layer thickness</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="cfd_m10.png" alt="CFD velocity contours M=1.0">
+                        <p class="image-caption">M = 1.0 — strong shock with pronounced low-velocity region; C<sub>D</sub> spikes to 0.290; large separated wake</p>
+                    </div>
+                </div>
+
+                <div class="image-grid">
+                    <div class="image-container">
+                        <img src="cfd_m11.png" alt="CFD velocity contours M=1.1">
+                        <p class="image-caption">M = 1.1 — fully transonic to supersonic; well-defined shock structure, expanded separation zone, steep velocity gradients</p>
+                    </div>
+                    <div class="image-container">
+                        <img src="cfd_m12.png" alt="CFD velocity contours M=1.2">
+                        <p class="image-caption">M = 1.2 — strong compressibility effects; extended low-velocity wake, shock-induced separation dominates the flow field</p>
+                    </div>
+                </div>
+
+                <h3>Discussion</h3>
+                <p>
+                    The drag data aligns well with classical transonic aerodynamic theory: the drag divergence peak at M = 1.0 is physically consistent with shock wave formation and the associated pressure drag rise. The stall strip amplified shock–boundary layer interaction by thickening the upstream boundary layer, promoting earlier flow separation and increased wake instability — the opposite of its beneficial effect in low-speed flow. Where the strip creates controlled, gradual separation at low Reynolds numbers, it creates a larger separated region and stronger shock interaction in the transonic regime.
+                </p>
+                <p>
+                    The non-physical lift values at zero AOA are acknowledged as a simulation limitation rather than a physical result, likely attributable to mesh asymmetry. The lift trend near M = 1.0 — a sharp drop as the shock suppresses the upper surface suction peak — is physically meaningful and consistent with published transonic NACA 0012 data.
+                </p>
+
+                <div class="callout">
+                    <strong>Key finding:</strong> Stall strips that improve stall safety in low-speed flight become aerodynamically costly in transonic conditions. The same boundary layer thickening mechanism that produces gradual, predictable stall at low speeds amplifies shock–boundary layer interaction at high speeds — increasing drag and promoting earlier separation. This study confirms that geometric flow-control devices designed for one regime cannot be directly transferred to another without accounting for compressibility effects.
+                </div>
+            </section>
+        </div>
+
     </main>
 
     <footer class="footer">
