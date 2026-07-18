@@ -18,10 +18,10 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
         .project-header h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 600; }
         .project-meta { display: flex; gap: 2rem; margin-top: 1.5rem; font-size: 1.05rem; opacity: 0.9; flex-wrap: wrap; }
-        .status-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,200,0,0.25); border: 1px solid rgba(255,200,0,0.6); border-radius: 20px; padding: 0.45rem 1.1rem; font-size: 0.95rem; color: #ffe066; font-weight: 600; }
+        .status-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,200,0,0.25); border: 1px solid rgba(255,200,0,0.6); border-radius: 20px; padding: 0.45rem 1.1rem; font-size: 0.95rem; font-weight: 500; }
         .status-dot { width: 8px; height: 8px; background: #ffe066; border-radius: 50%; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .prereq-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 0.45rem 1rem; font-size: 0.9rem; color: white; text-decoration: none; transition: background 0.3s; }
+        .prereq-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 20px; padding: 0.45rem 1rem; font-size: 0.95rem; font-weight: 500; text-decoration: none; color: white; transition: background 0.3s; }
         .prereq-badge:hover { background: rgba(255,255,255,0.22); }
         .section { padding: 4rem 0; border-bottom: 1px solid #e9ecef; }
         .section:last-child { border-bottom: none; }
@@ -39,7 +39,7 @@
         .callout { background: #f5eeff; border-left: 4px solid #6a1fa0; border-radius: 6px; padding: 1.2rem 1.6rem; margin: 1.5rem 0; font-size: 1.02rem; line-height: 1.8; }
         .callout-warn { background: #fff8e6; border-left: 4px solid #e67e22; border-radius: 6px; padding: 1.2rem 1.6rem; margin: 1.5rem 0; font-size: 1.02rem; line-height: 1.8; }
         .step { display: flex; gap: 1.2rem; margin-bottom: 1.8rem; align-items: flex-start; }
-        .step-num { flex-shrink: 0; width: 36px; height: 36px; background: #6a1fa0; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; margin-top: 0.1rem; }
+        .step-num { flex-shrink: 0; width: 36px; height: 36px; background: #6a1fa0; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
         .step-body h4 { font-size: 1.05rem; color: #4a1a6e; font-weight: 700; margin-bottom: 0.3rem; }
         .step-body p { font-size: 0.98rem; margin: 0; line-height: 1.7; color: #444; }
         .tech-list { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.5rem 0; }
@@ -67,7 +67,7 @@
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1.2rem; align-items:center;">
                 <div class="status-badge"><div class="status-dot"></div> Project In Progress</div>
-                <a href="stall-strip-portfolio.html" class="prereq-badge"><i class="fas fa-link"></i>&nbsp; Builds on: Stall Strip Aerodynamics Investigation (ME 490)</a>
+                <a href="stall-strip-portfolio.html" class="prereq-badge"><i class="fas fa-link"></i>&nbsp; Builds on: Stall Strip Aerodynamics Investigation</a>
             </div>
         </div>
     </div>
@@ -77,11 +77,11 @@
 
             <section class="section">
                 <h2>Motivation</h2>
-                <p>The ME 490 wind tunnel investigation established clear aerodynamic baselines for a NACA 0012 airfoil fitted with a triangular leading-edge stall strip: controlled, gradual stall progression at the cost of a modest reduction in C<sub>L,max</sub>. Throughout that study, the airfoil was treated as a rigid body. The mounting system was specifically engineered to eliminate deflection, vibration, and compliance because structural movement would have corrupted the aerodynamic measurements.</p>
-                <p>That constraint is appropriate for isolating aerodynamic behavior, but it creates a gap between the experimental model and physical reality. Real wings are flexible structures that bend under load, twist under asymmetric pressure distributions, and can enter oscillatory instabilities. Any flow-control device mounted to such a structure is subject to the same deformations, dynamically altering its operating conditions in ways a rigid-body test cannot capture.</p>
-                <p>Stall strips are particularly sensitive to this. Their aerodynamic function depends critically on chordwise position relative to the stagnation point and interaction with the developing boundary layer at the leading edge. Wing twist changes the local angle of attack, moving the stagnation point and altering exactly where the strip intercepts incoming flow. Bending redistributes that effect spanwise. Oscillatory motion modulates it cyclically. The question this investigation asks is therefore direct: does the stall strip continue to provide its intended stall control function when the wing it is mounted on is allowed to deform?</p>
+                <p>The stall strip wind tunnel investigation established clear aerodynamic baselines for a NACA 0012 airfoil fitted with a triangular leading-edge stall strip: controlled, gradual stall progression and significant post-stall lift retention compared to a clean airfoil.</p>
+                <p>That constraint is appropriate for isolating aerodynamic behavior, but it creates a gap between the experimental model and physical reality. Real wings are flexible structures that deflect and twist under aerodynamic load. The structural compliance couples with aerodynamic forces, creating feedback loops that can amplify response, trigger instability, or fundamentally alter flow behavior.</p>
+                <p>Stall strips are particularly sensitive to this. Their aerodynamic function depends critically on chordwise position relative to the stagnation point and interaction with the developing boundary layer. A geometric shift of even 1–2% chord can move the reattachment point or alter leading-edge suction recovery—both central to stall strip performance.</p>
                 <div class="callout">
-                    <strong>Core question:</strong> When a wing fitted with a stall strip undergoes aeroelastic deformation &mdash; bending, twisting, or flutter-driven oscillation &mdash; does the strip retain its stall control authority, or does structural flexibility degrade, shift, or nullify its aerodynamic function?
+                    <strong>Core question:</strong> When a wing fitted with a stall strip undergoes aeroelastic deformation &mdash; bending, twisting, or flutter-driven oscillation &mdash; does the stall strip retain its designed aerodynamic benefit, or do aeroelastic effects reduce its effectiveness or introduce unintended aerodynamic phenomena?
                 </div>
             </section>
 
@@ -91,41 +91,41 @@
                 <div class="phenom-grid">
                     <div class="phenom-card">
                         <h4>Static Aeroelastic Twist</h4>
-                        <p>Under steady aerodynamic loading, a flexible wing twists about its elastic axis, changing local angle of attack spanwise. The stall strip's effectiveness depends on how close each section operates to C<sub>L,max</sub>; static twist redistributes that margin non-uniformly in a way the rigid model cannot represent.</p>
+                        <p>Under steady aerodynamic loading, a flexible wing twists about its elastic axis, changing local angle of attack spanwise. The stall strip's effectiveness depends on how closely it remains aligned with the developing flow's pressure gradient. Elastic twist can misalign the strip relative to flow, reducing reattachment control.</p>
                     </div>
                     <div class="phenom-card">
                         <h4>Flutter</h4>
-                        <p>Flutter is an aeroelastic instability in which energy is continuously extracted from the flow into coupled pitch-plunge oscillation. A stall strip on a fluttering wing experiences rapidly oscillating angles of attack, potentially disrupting the quasi-steady boundary layer tripping the strip relies on. The altered post-stall lift curve from the strip may simultaneously shift the flutter boundary itself.</p>
+                        <p>Flutter is an aeroelastic instability in which energy is continuously extracted from the flow into coupled pitch-plunge oscillation. A stall strip on a fluttering wing experiences transient angle-of-attack excursions, triggering dynamic stall vortices that may feed energy back into the structure and destabilize the system further.</p>
                     </div>
                     <div class="phenom-card">
                         <h4>Limit Cycle Oscillation</h4>
-                        <p>Beyond the flutter boundary, many structures settle into bounded periodic oscillations stabilized by aerodynamic or structural nonlinearity. The stall strip introduces a deliberate aerodynamic nonlinearity &mdash; a modified post-stall lift curve &mdash; that may alter LCO amplitude and frequency. Whether this stabilizes or destabilizes the LCO is a central unknown.</p>
+                        <p>Beyond the flutter boundary, many structures settle into bounded periodic oscillations stabilized by aerodynamic or structural nonlinearity. The stall strip introduces a delayed stall response; the hypothesis is that this smooth aerodynamic curve may lower the amplitude envelope that bounds the oscillation.</p>
                     </div>
                     <div class="phenom-card">
                         <h4>Dynamic Stall</h4>
-                        <p>When a wing oscillates through stall, aerodynamic response lags the motion, producing hysteresis in lift and moment curves with peak loads exceeding quasi-steady predictions. Stall strips alter static stall character; this investigation examines whether they shift the dynamic stall onset angle, modify hysteresis loop shape, and change impulsive loading during stall-reattachment cycles.</p>
+                        <p>When a wing oscillates through stall, aerodynamic response lags the motion, producing hysteresis in lift and moment curves with peak loads exceeding quasi-steady predictions. The stall strip may shift the onset angle and alter the vortex shedding dynamics, changing both transient loads and flutter stability.</p>
                     </div>
                 </div>
                 <div class="callout-warn">
-                    <strong>Design safety implication:</strong> A wing designed to a flutter margin using clean-airfoil aerodynamics may have a different flutter speed once a stall strip is installed &mdash; because the strip alters the aerodynamic forcing that drives the instability. The direction and magnitude of that shift is currently uncharacterized, meaning stall strips are being fitted to flexible structures without a validated model of their aeroelastic consequences.
+                    <strong>Design safety implication:</strong> A wing designed to a flutter margin using clean-airfoil aerodynamics may have a different flutter speed once a stall strip is installed. This coupling must be characterized to avoid over-predicting stability margins.
                 </div>
             </section>
 
             <section class="section">
                 <h2>Hypotheses</h2>
-                <p>Based on the ME 490 aerodynamic results and classical aeroelastic theory, the following predictions drive the experimental design.</p>
+                <p>Based on the stall strip aerodynamic results and classical aeroelastic theory, the following predictions drive the experimental design.</p>
 
                 <h3>H1 &mdash; Divergence Speed</h3>
-                <p>Divergence speed scales inversely with the effective lift curve slope C<sub>L&alpha;</sub>. The stall strip reduces C<sub>L,max</sub> and softens the stall break but has a small effect on the pre-stall linear slope. Since divergence is governed by the linear regime, the strip is expected to produce only a minor increase in divergence speed. The 3% chord position &mdash; which caused the largest C<sub>L,max</sub> reduction in ME 490 &mdash; should produce the largest, but still modest, effect.</p>
+                <p>Divergence speed scales inversely with the effective lift curve slope C<sub>L&alpha;</sub>. The stall strip reduces C<sub>L,max</sub> and softens the stall break but has a small effect on the pre-stall slope. Therefore, divergence speed is expected to change only slightly with the stall strip installation.</p>
 
                 <h3>H2 &mdash; Flutter Speed</h3>
-                <p>The stall strip shifts the effective stall angle earlier, meaning the wing enters nonlinear aerodynamic behavior at lower dynamic pressure. The hypothesis is that leading-edge placement (0% chord) will have the smallest effect on flutter speed because it modifies the lift curve least aggressively in the pre-stall linear range where flutter initiates. The 3% chord position may produce a measurable reduction in flutter speed by limiting aerodynamic damping available through the pitch cycle.</p>
+                <p>The stall strip shifts the effective stall angle earlier, meaning the wing enters nonlinear aerodynamic behavior at lower dynamic pressure. The hypothesis is that leading-edge placement at 0% chord will defer the flutter transition to higher speeds by maintaining attached flow longer, while higher placements will have less beneficial effect.</p>
 
                 <h3>H3 &mdash; Limit Cycle Oscillation</h3>
-                <p>The gradual post-stall lift curve from the stall strip removes a sharp aerodynamic nonlinearity that would otherwise act as a restoring force to bound LCO amplitude. The hypothesis is that the strip will increase LCO amplitude relative to the clean wing because the smoother stall provides less limit-cycle damping per oscillation cycle. If confirmed, this represents a direct aeroelastic cost of the strip's primary safety benefit.</p>
+                <p>The gradual post-stall lift curve from the stall strip removes a sharp aerodynamic nonlinearity that would otherwise act as a restoring force to bound LCO amplitude. The hypothesis is that LCO amplitude will increase with the stall strip, particularly for 0% chord placement.</p>
 
                 <h3>H4 &mdash; Dynamic Stall</h3>
-                <p>The stall strip is expected to shift dynamic stall onset to a lower angle of attack, consistent with its static behavior, and to reduce the peak suction driving the dynamic stall vortex. This should reduce impulsive pitching moment loading per stall cycle &mdash; beneficial for structural fatigue &mdash; though earlier stall onset may increase the number of stall cycles per unit time at a given oscillation amplitude.</p>
+                <p>The stall strip is expected to shift dynamic stall onset to a lower angle of attack, consistent with its static behavior, and to reduce the peak suction driving the dynamic stall vortex growth, thereby lowering transient loads during flutter or forced oscillation.</p>
             </section>
 
             <section class="section">
@@ -135,7 +135,7 @@
                     <div class="step-num">1</div>
                     <div class="step-body">
                         <h4>Analytical Baseline &mdash; Typical Section Model</h4>
-                        <p>Implement the 2-DOF pitch-plunge typical section equations of motion in MATLAB, substituting measured ME 490 lift curves as aerodynamic inputs in place of the standard thin-airfoil linear slope. Compute predicted flutter and divergence speeds for each strip configuration analytically before any new wind tunnel runs, to establish expected trends and size the structural parameters of the experimental rig.</p>
+                        <p>Implement the 2-DOF pitch-plunge typical section equations of motion in MATLAB, substituting measured stall strip lift curves as aerodynamic inputs in place of the standard thin-airfoil approximation. This provides an a priori prediction of flutter speed, divergence speed, and LCO behavior.</p>
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@
                     <div class="step-num">2</div>
                     <div class="step-body">
                         <h4>Elastic Rig Design and Fabrication</h4>
-                        <p>Modify the existing wind tunnel mounting system to introduce controlled structural compliance. The rigid stainless steel rod is replaced with a calibrated spring system &mdash; coil springs constraining plunge, a torsion rod governing pitch &mdash; converting the existing setup into a 2-DOF typical section rig. Natural frequencies and stiffness values are tuned to place the flutter boundary within the wind tunnel velocity envelope.</p>
+                        <p>Modify the existing wind tunnel mounting system to introduce controlled structural compliance. The rigid stainless steel rod is replaced with a calibrated spring system &mdash; specifically, a cantilevered aluminum spar with stiffness tuned to yield a first natural frequency of approximately 8–12 Hz.</p>
                     </div>
                 </div>
 
@@ -151,7 +151,7 @@
                     <div class="step-num">3</div>
                     <div class="step-body">
                         <h4>Instrumentation</h4>
-                        <p>Add strain gauges at the root to measure bending moment and torque as a function of airspeed, and accelerometers at the tip to capture oscillation onset, frequency, and amplitude. The existing force balance, pitot-static airspeed reference, and wool tufts from ME 490 are retained, keeping instrumentation consistent with the rigid baseline for direct comparison.</p>
+                        <p>Add strain gauges at the root to measure bending moment and torque as a function of airspeed, and accelerometers at the tip to capture oscillation onset, frequency, and amplitude. A high-speed camera will record qualitative flutter behavior and vortex shedding.</p>
                     </div>
                 </div>
 
@@ -159,7 +159,7 @@
                     <div class="step-num">4</div>
                     <div class="step-body">
                         <h4>Wind Tunnel Test Campaign</h4>
-                        <p>Sweep freestream velocity from well below to just above the predicted flutter boundary for four configurations: clean elastic wing (baseline), strip at 0%, 1.5%, and 3% chord. At each configuration, record strain, acceleration, and force data as a function of velocity and angle of attack. Identify flutter onset velocity, divergence onset, and LCO amplitude versus velocity above V<sub>F</sub>.</p>
+                        <p>Sweep freestream velocity from well below to just above the predicted flutter boundary for four configurations: clean elastic wing (baseline), strip at 0%, 1.5%, and 3% chord. Record flutter speed, limit cycle amplitude, and post-flutter divergence behavior for each.</p>
                     </div>
                 </div>
 
@@ -167,7 +167,7 @@
                     <div class="step-num">5</div>
                     <div class="step-body">
                         <h4>Dynamic Stall Characterization</h4>
-                        <p>At a fixed velocity near 80% of V<sub>F</sub>, impose forced pitching oscillations across a range of frequencies and amplitudes that drive the section through stall. Record lift and moment hysteresis loops for each strip configuration and compare peak loads, loop area, and stall onset angle against the rigid ME 490 quasi-static measurements.</p>
+                        <p>At a fixed velocity near 80% of V<sub>F</sub>, impose forced pitching oscillations across a range of frequencies and amplitudes that drive the section through stall. Record instantaneous lift, moment, and lift coefficient hysteresis loops. Compare dynamic stall behavior across stall strip configurations.</p>
                     </div>
                 </div>
 
@@ -175,7 +175,7 @@
                     <div class="step-num">6</div>
                     <div class="step-body">
                         <h4>Analysis and Comparison Against Hypotheses</h4>
-                        <p>Correlate measured flutter speeds, divergence speeds, and LCO amplitudes against the analytical predictions from Step 1. Identify where the typical section model with modified lift curves captures experimental behavior and where it fails &mdash; those discrepancies will indicate higher-order effects worth pursuing in follow-on work.</p>
+                        <p>Correlate measured flutter speeds, divergence speeds, and LCO amplitudes against the analytical predictions from Step 1. Identify where the typical section model with modified aerodynamics successfully predicts behavior and where nonlinear or 3D effects introduce departures. Formulate design guidelines for stall strip placement on flexible wings.</p>
                     </div>
                 </div>
             </section>
